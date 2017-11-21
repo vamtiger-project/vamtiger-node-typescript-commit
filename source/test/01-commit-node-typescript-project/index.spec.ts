@@ -1,8 +1,9 @@
 import { expect } from 'chai';
-import commit from '../..';
+import {default as commit, RunScript} from '../..';
 
 const params = {
-    test: true
+    test: true,
+    runScript: RunScript.yarn
 };
 
 describe('vamtiger-node-typescript-commit', function () {
