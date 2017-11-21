@@ -8,7 +8,8 @@ export default async function main(options: Options) {
     const updateVersion = options.updateVersion ? options.updateVersion : UpdateVersion.patch;
     const sourceBranch = options.sourceBranch ? options.sourceBranch : 'source';
     const masterBranch = options.masterBranch ? options.masterBranch : 'master';
-    const sourceFolder = options.sourceFolder ? options.sourceFolder : sourceBranch;
+    const sourceFolder = options.sourceFolder ? options.sourceFolder : Folder.source;
+    const buildFolder = options.buildFolder ? options.buildFolder : Folder.build;
     const runScript = options.runScript ? options.runScript : RunScript.npm;
     const buildScript = options.buildScript ? options.buildScript : BuildScript.build;
     const push = options.push ? true : false;
@@ -39,7 +40,7 @@ export default async function main(options: Options) {
     if (publish)
         publishUpdate = await bash(`npm publish`);
 
-    console
+    return true;
 };
 
 export interface Options {
@@ -48,6 +49,7 @@ export interface Options {
     sourceBranch?: string;
     masterBranch?: string
     sourceFolder?: PathLike|string;
+    buildFolder?: PathLike|string;
     runScript?: RunScript;
     buildScript?: BuildScript|string;
     push?: boolean;
@@ -66,5 +68,10 @@ export enum RunScript {
 }
 
 export enum BuildScript {
+    build = "build"
+}
+
+export enum Folder {
+    source = "source",
     build = "build"
 }
