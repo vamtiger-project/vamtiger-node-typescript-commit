@@ -22,14 +22,14 @@ export default async function commit(options: Options) {
     };
     const message = test ? `${commitMessage}: Test`: commitMessage;
     const checkoutSource = await bash(`git checkout ${sourceBranch}`, bashOptions);
-    const removeBuild = await bash('rm -rfv build', bashOptions);
+    const removeBuild = await bash(`rm -rfv ${buildFolder}`, bashOptions);
     const status = await bash('git status', bashOptions);
     const addSource = await bash('git add -A');
     const commitSource = await bash(`git commit -m "${message}"`, bashOptions);
     const checkoutMaster = await bash(`git checkout ${masterBranch}`, bashOptions);
     const mergeFromSource = await bash(`git merge -X theirs ${sourceBranch}`, bashOptions);
     const build = await bash(`${runScript} ${buildScript}`, bashOptions);
-    const removeRedundantSource = await bash(`rm -rfv yarn.lock tsconfig .vscode ${sourceFolder}`, bashOptions);
+    const removeRedundantSource = await bash(`rm -rfv ${repositoryPath}/yarn.lock ${repositoryPath}/tsconfig ${repositoryPath}/.vscode ${sourceFolder}`, bashOptions);
     const addBuild = await bash('git add -A', bashOptions);
     const commitBuild = await bash(`git commit -m "${message}"`, bashOptions);
     const update = await bash(`npm version ${updateVersion}`, bashOptions);

@@ -30,14 +30,14 @@ function commit(options) {
         };
         const message = test ? `${commitMessage}: Test` : commitMessage;
         const checkoutSource = yield vamtiger_bash_1.default(`git checkout ${sourceBranch}`, bashOptions);
-        const removeBuild = yield vamtiger_bash_1.default('rm -rfv build', bashOptions);
+        const removeBuild = yield vamtiger_bash_1.default(`rm -rfv ${buildFolder}`, bashOptions);
         const status = yield vamtiger_bash_1.default('git status', bashOptions);
         const addSource = yield vamtiger_bash_1.default('git add -A');
         const commitSource = yield vamtiger_bash_1.default(`git commit -m "${message}"`, bashOptions);
         const checkoutMaster = yield vamtiger_bash_1.default(`git checkout ${masterBranch}`, bashOptions);
         const mergeFromSource = yield vamtiger_bash_1.default(`git merge -X theirs ${sourceBranch}`, bashOptions);
         const build = yield vamtiger_bash_1.default(`${runScript} ${buildScript}`, bashOptions);
-        const removeRedundantSource = yield vamtiger_bash_1.default(`rm -rfv yarn.lock tsconfig .vscode ${sourceFolder}`, bashOptions);
+        const removeRedundantSource = yield vamtiger_bash_1.default(`rm -rfv ${repositoryPath}/yarn.lock ${repositoryPath}/tsconfig ${repositoryPath}/.vscode ${sourceFolder}`, bashOptions);
         const addBuild = yield vamtiger_bash_1.default('git add -A', bashOptions);
         const commitBuild = yield vamtiger_bash_1.default(`git commit -m "${message}"`, bashOptions);
         const update = yield vamtiger_bash_1.default(`npm version ${updateVersion}`, bashOptions);
