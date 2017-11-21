@@ -16,8 +16,8 @@ export default async function main(options: Options) {
     const publish = push && options.publish ? true : false;
     const message = test ? `${commitMessage}: Test`: commitMessage;
     const checkoutSource = await bash(`git checkout ${sourceBranch}`);
-    const status = await bash('git status');
     const removeBuild = await bash('rm -rfv build');
+    const status = await bash('git status');
     const addSource = await bash('git add -A');
     const commitSource = await bash(`git commit -m "${message}"`);
     const checkoutMaster = await bash(`git checkout ${masterBranch}`);
