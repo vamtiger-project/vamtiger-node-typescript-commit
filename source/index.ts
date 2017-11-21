@@ -21,7 +21,7 @@ export default async function main(options: Options) {
     const addSource = await bash('git add -A');
     const commitSource = await bash(`git commit -m "${message}"`);
     const checkoutMaster = await bash(`git checkout ${masterBranch}`);
-    const mergeFromSource = await bash(`git merge ${sourceBranch}`);
+    const mergeFromSource = await bash(`git merge -X theirs ${sourceBranch}`);
     const build = await bash(`${runScript} ${buildScript}`);
     const removeRedundantSource = await bash(`rm -rfv yarn.lock tsconfig .vscode ${sourceFolder}`);
     const addBuild = await bash('git add -A');
