@@ -1,6 +1,7 @@
+import { ExecOptions} from 'child_process';
 import bash from 'vamtiger-bash';
 import { PathLike } from 'fs';
-import { resolve as resolvePath} from 'path';
+import { resolve as resolvePath, basename} from 'path';
 import * as XRegExp from 'xregexp';
 import { Options, UpdateVersion, Folder, RunScript, BuildScript } from '..';
 
@@ -17,6 +18,7 @@ export default async function commit(options: Options) {
     const sourceBranch = options.sourceBranch ? options.sourceBranch : 'source';
     const masterBranch = options.masterBranch ? options.masterBranch : 'master';
     const sourceFolder = options.sourceFolder ? options.sourceFolder : resolvePath(repositoryPath, Folder.source);
+    const sourceFolderName = basename(sourceFolder as string);
     const buildFolder = options.buildFolder ? options.buildFolder : resolvePath(repositoryPath, Folder.build);
     const runScript = options.runScript ? options.runScript : RunScript.npm;
     const buildScript = options.buildScript ? options.buildScript : BuildScript.build;
@@ -30,17 +32,17 @@ export default async function commit(options: Options) {
     const removeBuild = await bash(`rm -rfv ${buildFolder}`, bashOptions);
     const addSource = await bash('git add -A', bashOptions);
     const sourceStatus = await bash('git status', bashOptions);
-    const commitChanges = sourceStatus.match(regex.noChanges);
-
-    const commitSource = await bash(`git commit -m "${message}"`, bashOptions);
+    const commitSourceChanges = sourceStatus.match(regex.noChanges) ? false : true;
+    const commitSource = await bash(`git commit -m "${message}"`, bashOptions).catch(error => handleError({error, bashOptions}));
+    const updateSource = await bash(`npm version ${UpdateVersion.prepatch}`, bashOptions);
     const checkoutMaster = await bash(`git checkout ${masterBranch}`, bashOptions);
-    const masterStatus = await bash('git status', bashOptions);
-    const mergeFromSource = await bash(`git merge -X theirs ${sourceBranch}`, bashOptions);
+    const mergeFromSource = await bash(`git checkout ${sourceBranch} -- .`, bashOptions);
     const build = await bash(`${runScript} ${buildScript}`, bashOptions);
-    const removeRedundantSource = await bash(`rm -rfv ${repositoryPath}/yarn.lock ${repositoryPath}/tsconfig ${repositoryPath}/.vscode ${sourceFolder}`, bashOptions);
+    const removeRedundantSource = await bash(`rm -rfv ${repositoryPath}/yarn.lock ${repositoryPath}/tsconfig.json ${repositoryPath}/.vscode ${sourceFolder}`, bashOptions);
     const addBuild = await bash('git add -A', bashOptions);
+    const masterStatus = await bash('git status', bashOptions);
     const commitBuild = await bash(`git commit -m "${message}"`, bashOptions);
-    const update = await bash(`npm version ${updateVersion}`, bashOptions);
+    const updateBuild = await bash(`npm version ${updateVersion}`, bashOptions);
 
     let pushUpdate: string[];
     let publishUpdate: string;
@@ -55,4 +57,19 @@ export default async function commit(options: Options) {
         publishUpdate = await bash(`npm publish`);
 
     return true;
+}
+
+function handleError(params: IHandleError) {
+    const error = params.error;
+    const bashOptions = params.bashOptions;
+
+    console.warn(error.message);
+    console.warn(error.stack);
+        
+    return Promise.reject(error);
+}
+
+interface IHandleError {
+    error: Error;
+    bashOptions: ExecOptions;
 }

@@ -26,6 +26,7 @@ var UpdateVersion;
     UpdateVersion["patch"] = "patch";
     UpdateVersion["minor"] = "minor";
     UpdateVersion["major"] = "major";
+    UpdateVersion["prepatch"] = "prepatch";
 })(UpdateVersion = exports.UpdateVersion || (exports.UpdateVersion = {}));
 var RunScript;
 (function (RunScript) {

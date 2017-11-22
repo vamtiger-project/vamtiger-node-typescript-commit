@@ -4,6 +4,9 @@
   "description": "Commits changes within a node.js-typescript project.",
   "main": "build",
   "types": "build/index.d.ts",
+  "bin": {
+    "vamtigerNodeTypescriptCommit": "build/bin/index.js"
+  },
   "repository": "https://github.com/vamtiger-project/vamtiger-node-typescript-commit.git",
   "author": "Vamtiger Immortalles",
   "license": "MIT",
@@ -13,6 +16,7 @@
   },
   "dependencies": {
     "bluebird": "^3.5.1",
+    "vamtiger-argv": "^1.2.0",
     "vamtiger-bash": "^0.0.11",
     "xregexp": "^3.2.0"
   },
@@ -20,11 +24,14 @@
     "@types/bluebird": "^3.5.18",
     "@types/chai": "^4.0.5",
     "@types/mocha": "^2.2.44",
+    "@types/moment": "^2.13.0",
     "@types/node": "^8.0.53",
     "@types/typescript": "^2.0.0",
     "@types/xregexp": "^3.0.29",
     "chai": "^4.1.2",
     "mocha": "^4.0.1",
-    "typescript": "^2.6.1"
+    "moment": "^2.19.2",
+    "typescript": "^2.6.1",
+    "vamtiger-test-node-typescript-repository": "^0.0.36"
   }
 }

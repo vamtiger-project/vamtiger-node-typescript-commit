@@ -15,7 +15,7 @@ export default async function main(options: Options) {
 };
 
 export interface Options {
-    test: boolean;
+    test?: boolean;
     updateVersion?: UpdateVersion;
     sourceBranch?: string;
     masterBranch?: string
@@ -31,7 +31,8 @@ export interface Options {
 export enum UpdateVersion {
     patch = "patch",
     minor = "minor",
-    major = "major"
+    major = "major",
+    prepatch = "prepatch"
 }
 
 export enum RunScript {

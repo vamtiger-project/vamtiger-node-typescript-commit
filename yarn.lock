@@ -14,6 +14,12 @@
   version "2.2.44"
   resolved "https://registry.yarnpkg.com/@types/mocha/-/mocha-2.2.44.tgz#1d4a798e53f35212fd5ad4d04050620171cd5b5e"
 
+"@types/moment@^2.13.0":
+  version "2.13.0"
+  resolved "https://registry.yarnpkg.com/@types/moment/-/moment-2.13.0.tgz#604ebd189bc3bc34a1548689404e61a2a4aac896"
+  dependencies:
+    moment "*"
+
 "@types/node@^8.0.53":
   version "8.0.53"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.53.tgz#396b35af826fa66aad472c8cb7b8d5e277f4e6d8"
@@ -167,6 +173,10 @@ mocha@^4.0.1:
     mkdirp "0.5.1"
     supports-color "4.4.0"
 
+moment@*, moment@^2.19.2:
+  version "2.19.2"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.19.2.tgz#8a7f774c95a64550b4c7ebd496683908f9419dbe"
+
 ms@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
@@ -199,11 +209,19 @@ typescript@*, typescript@^2.6.1:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.6.1.tgz#ef39cdea27abac0b500242d6726ab90e0c846631"
 
+vamtiger-argv@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/vamtiger-argv/-/vamtiger-argv-1.2.0.tgz#4962fcf6aa151ac80b5917fb598de331772d5733"
+
 vamtiger-bash@^0.0.11:
   version "0.0.11"
   resolved "https://registry.yarnpkg.com/vamtiger-bash/-/vamtiger-bash-0.0.11.tgz#65bf9ea1206c1e6982522010caf6b66a1bff9e39"
   dependencies:
     bluebird "^3.5.1"
+
+vamtiger-test-node-typescript-repository@^0.0.36:
+  version "0.0.36"
+  resolved "https://registry.yarnpkg.com/vamtiger-test-node-typescript-repository/-/vamtiger-test-node-typescript-repository-0.0.36.tgz#4be3af336335ea1dad7cd2cefdecce035f534709"
 
 wrappy@1:
   version "1.0.2"
