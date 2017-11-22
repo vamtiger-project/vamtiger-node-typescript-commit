@@ -10,7 +10,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const vamtiger_bash_1 = require("vamtiger-bash");
 const path_1 = require("path");
+const XRegExp = require("xregexp");
 const __1 = require("..");
+const regex = {
+    noChanges: XRegExp('nothing to commit', 'msi')
+};
 let commitMessage = 'vamtiger-node-typescript-commit';
 function commit(options) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -31,10 +35,12 @@ function commit(options) {
         const message = test ? `${commitMessage}: Test` : commitMessage;
         const checkoutSource = yield vamtiger_bash_1.default(`git checkout ${sourceBranch}`, bashOptions);
         const removeBuild = yield vamtiger_bash_1.default(`rm -rfv ${buildFolder}`, bashOptions);
-        const status = yield vamtiger_bash_1.default('git status', bashOptions);
-        const addSource = yield vamtiger_bash_1.default('git add -A');
+        const addSource = yield vamtiger_bash_1.default('git add -A', bashOptions);
+        const sourceStatus = yield vamtiger_bash_1.default('git status', bashOptions);
+        const commitChanges = sourceStatus.match(regex.noChanges);
         const commitSource = yield vamtiger_bash_1.default(`git commit -m "${message}"`, bashOptions);
         const checkoutMaster = yield vamtiger_bash_1.default(`git checkout ${masterBranch}`, bashOptions);
+        const masterStatus = yield vamtiger_bash_1.default('git status', bashOptions);
         const mergeFromSource = yield vamtiger_bash_1.default(`git merge -X theirs ${sourceBranch}`, bashOptions);
         const build = yield vamtiger_bash_1.default(`${runScript} ${buildScript}`, bashOptions);
         const removeRedundantSource = yield vamtiger_bash_1.default(`rm -rfv ${repositoryPath}/yarn.lock ${repositoryPath}/tsconfig ${repositoryPath}/.vscode ${sourceFolder}`, bashOptions);

@@ -1,7 +1,12 @@
 import bash from 'vamtiger-bash';
 import { PathLike } from 'fs';
 import { resolve as resolvePath} from 'path';
+import * as XRegExp from 'xregexp';
 import { Options, UpdateVersion, Folder, RunScript, BuildScript } from '..';
+
+const regex = {
+    noChanges: XRegExp('nothing to commit', 'msi')
+};
 
 let commitMessage = 'vamtiger-node-typescript-commit';
 
@@ -23,10 +28,13 @@ export default async function commit(options: Options) {
     const message = test ? `${commitMessage}: Test`: commitMessage;
     const checkoutSource = await bash(`git checkout ${sourceBranch}`, bashOptions);
     const removeBuild = await bash(`rm -rfv ${buildFolder}`, bashOptions);
-    const status = await bash('git status', bashOptions);
-    const addSource = await bash('git add -A');
+    const addSource = await bash('git add -A', bashOptions);
+    const sourceStatus = await bash('git status', bashOptions);
+    const commitChanges = sourceStatus.match(regex.noChanges);
+
     const commitSource = await bash(`git commit -m "${message}"`, bashOptions);
     const checkoutMaster = await bash(`git checkout ${masterBranch}`, bashOptions);
+    const masterStatus = await bash('git status', bashOptions);
     const mergeFromSource = await bash(`git merge -X theirs ${sourceBranch}`, bashOptions);
     const build = await bash(`${runScript} ${buildScript}`, bashOptions);
     const removeRedundantSource = await bash(`rm -rfv ${repositoryPath}/yarn.lock ${repositoryPath}/tsconfig ${repositoryPath}/.vscode ${sourceFolder}`, bashOptions);

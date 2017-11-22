@@ -14,7 +14,8 @@ const path = require("path");
 const params = {
     test: true,
     runScript: __1.RunScript.yarn,
-    repositoryPath: path.resolve(__dirname, 'test-node-typescript-repository')
+    repositoryPath: path.resolve(__dirname, 'test-node-typescript-repository').replace('/build/', '/source/'),
+    push: true
 };
 describe('vamtiger-node-typescript-commit', function () {
     it('commit a node typescript project', function () {
