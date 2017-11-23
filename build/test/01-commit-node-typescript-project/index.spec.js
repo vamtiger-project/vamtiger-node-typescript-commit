@@ -25,12 +25,23 @@ const params = {
     push: true,
     publish: true
 };
+const bashParams = {
+    cwd: params.repositoryPath
+};
+const testRepo = 'https://github.com/vamtiger-project/test-node-typescript-repository.git';
+const testRepoParentFolder = path_1.dirname(bashParams.cwd);
+const bashInitializationParams = {
+    cwd: testRepoParentFolder
+};
 describe('vamtiger-node-typescript-commit', function () {
-    this.timeout(20000);
+    this.timeout(30000);
     it('commit a node typescript project', function () {
         return __awaiter(this, void 0, void 0, function* () {
-            const checkoutSource = yield vamtiger_bash_1.default(`git checkout source`, {
-                cwd: params.repositoryPath
+            const clone = yield vamtiger_bash_1.default(`git clone "${testRepo}"`, bashInitializationParams).catch(error => {
+                error;
+            });
+            const checkoutSource = yield vamtiger_bash_1.default(`git checkout source`, bashParams).catch(error => {
+                error;
             });
             const updateFile = yield write(filePath, update);
             const result = yield __1.default(params);
