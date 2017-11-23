@@ -34,6 +34,7 @@ function commit(options) {
             cwd: repositoryPath
         };
         const message = test ? `${commitMessage}: Test` : commitMessage;
+        const autoUpdate = yield vamtiger_bash_1.default(`git pull origin ${sourceBranch}`, bashOptions);
         const checkoutSource = yield vamtiger_bash_1.default(`git checkout ${sourceBranch}`, bashOptions);
         const removeBuild = yield vamtiger_bash_1.default(`rm -rfv ${buildFolder}`, bashOptions);
         const addSource = yield vamtiger_bash_1.default('git add -A', bashOptions);
@@ -49,13 +50,13 @@ function commit(options) {
         const masterStatus = yield vamtiger_bash_1.default('git status', bashOptions);
         const commitBuild = yield vamtiger_bash_1.default(`git commit -m "${message}"`, bashOptions);
         const updateBuild = yield vamtiger_bash_1.default(`npm version ${updateVersion}`, bashOptions);
-        let pushUpdate;
+        let pushSourceUpdate;
+        let pushBuildUpdate;
         let publishUpdate;
-        if (push)
-            pushUpdate = yield Promise.all([
-                vamtiger_bash_1.default(`git push origin ${sourceBranch}`),
-                vamtiger_bash_1.default(`git push origin ${masterBranch} --tags`)
-            ]);
+        if (push) {
+            pushSourceUpdate = yield vamtiger_bash_1.default(`git push origin ${sourceBranch}`);
+            pushBuildUpdate = yield vamtiger_bash_1.default(`git push -f origin ${masterBranch} --tags`);
+        }
         if (publish)
             publishUpdate = yield vamtiger_bash_1.default(`npm publish`);
         return true;

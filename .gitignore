@@ -58,3 +58,5 @@ typings/
 .env
 
 .DS_Store
+
+source/test/02-commit-node-typescript-project-bin/test-node-typescript-repository

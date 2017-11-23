@@ -28,6 +28,7 @@ export default async function commit(options: Options) {
         cwd: repositoryPath as string
     };
     const message = test ? `${commitMessage}: Test`: commitMessage;
+    const autoUpdate = await bash(`git pull origin ${sourceBranch}`, bashOptions);
     const checkoutSource = await bash(`git checkout ${sourceBranch}`, bashOptions);
     const removeBuild = await bash(`rm -rfv ${buildFolder}`, bashOptions);
     const addSource = await bash('git add -A', bashOptions);
@@ -44,14 +45,14 @@ export default async function commit(options: Options) {
     const commitBuild = await bash(`git commit -m "${message}"`, bashOptions);
     const updateBuild = await bash(`npm version ${updateVersion}`, bashOptions);
 
-    let pushUpdate: string[];
+    let pushSourceUpdate: string;
+    let pushBuildUpdate: string;
     let publishUpdate: string;
 
-    if (push)
-        pushUpdate = await Promise.all([
-            bash(`git push origin ${sourceBranch}`),
-            bash(`git push origin ${masterBranch} --tags`)
-        ]);
+    if (push) {
+        pushSourceUpdate = await bash(`git push origin ${sourceBranch}`);
+        pushBuildUpdate = await bash(`git push -f origin ${masterBranch} --tags`);
+    }
 
     if (publish)
         publishUpdate = await bash(`npm publish`);
