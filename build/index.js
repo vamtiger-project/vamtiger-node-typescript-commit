@@ -8,42 +8,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const vamtiger_bash_1 = require("vamtiger-bash");
-let commitMessage = 'vamtiger-node-typescript-commit';
+const commit_1 = require("./commit");
 function main(options) {
     return __awaiter(this, void 0, void 0, function* () {
-        const test = options.test;
-        const updateVersion = options.updateVersion ? options.updateVersion : UpdateVersion.patch;
-        const sourceBranch = options.sourceBranch ? options.sourceBranch : 'source';
-        const masterBranch = options.masterBranch ? options.masterBranch : 'master';
-        const sourceFolder = options.sourceFolder ? options.sourceFolder : sourceBranch;
-        const runScript = options.runScript ? options.runScript : RunScript.npm;
-        const buildScript = options.buildScript ? options.buildScript : BuildScript.build;
-        const push = options.push ? true : false;
-        const publish = push && options.publish ? true : false;
-        const message = test ? `${commitMessage}: Test` : commitMessage;
-        const checkoutSource = yield vamtiger_bash_1.default(`git checkout ${sourceBranch}`);
-        const status = yield vamtiger_bash_1.default('git status');
-        const removeBuild = yield vamtiger_bash_1.default('rm -rfv build');
-        const addSource = yield vamtiger_bash_1.default('git add -A');
-        const commitSource = yield vamtiger_bash_1.default(`git commit -m "${message}"`);
-        const checkoutMaster = yield vamtiger_bash_1.default(`git checkout ${masterBranch}`);
-        const mergeFromSource = yield vamtiger_bash_1.default(`git merge ${sourceBranch}`);
-        const build = yield vamtiger_bash_1.default(`${runScript} ${buildScript}`);
-        const removeRedundantSource = yield vamtiger_bash_1.default(`rm -rfv yarn.lock tsconfig .vscode ${sourceFolder}`);
-        const addBuild = yield vamtiger_bash_1.default('git add -A');
-        const commitBuild = yield vamtiger_bash_1.default(`git commit -m "${message}"`);
-        const update = yield vamtiger_bash_1.default(`npm version ${updateVersion}`);
-        let pushUpdate;
-        let publishUpdate;
-        if (push)
-            pushUpdate = yield Promise.all([
-                vamtiger_bash_1.default(`git push origin ${sourceBranch}`),
-                vamtiger_bash_1.default(`git push origin ${masterBranch} --tags`)
-            ]);
-        if (publish)
-            publishUpdate = yield vamtiger_bash_1.default(`npm publish`);
-        console;
+        const repositoryPath = options.repositoryPath ? options.repositoryPath : process.argv[1];
+        const originalWorkingDirector = process.cwd();
+        let result;
+        process.chdir(repositoryPath);
+        result = yield commit_1.default(options);
+        return result;
     });
 }
 exports.default = main;
@@ -53,6 +26,7 @@ var UpdateVersion;
     UpdateVersion["patch"] = "patch";
     UpdateVersion["minor"] = "minor";
     UpdateVersion["major"] = "major";
+    UpdateVersion["prepatch"] = "prepatch";
 })(UpdateVersion = exports.UpdateVersion || (exports.UpdateVersion = {}));
 var RunScript;
 (function (RunScript) {
@@ -63,4 +37,9 @@ var BuildScript;
 (function (BuildScript) {
     BuildScript["build"] = "build";
 })(BuildScript = exports.BuildScript || (exports.BuildScript = {}));
+var Folder;
+(function (Folder) {
+    Folder["source"] = "source";
+    Folder["build"] = "build";
+})(Folder = exports.Folder || (exports.Folder = {}));
 //# sourceMappingURL=index.js.map
