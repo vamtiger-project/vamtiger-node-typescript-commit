@@ -7,7 +7,7 @@
         {
             "type": "node",
             "request": "launch",
-             "name": "Unit Tests",
+            "name": "Unit Tests",
             "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
             "args": [
                 "-u",
@@ -18,10 +18,10 @@
                 "${workspaceRoot}/build/test",
                 "--recursive"
             ],
-            // "internalConsoleOptions": "openOnSessionStart",
             "outFiles": [
                 "${workspaceRoot}/build/**/*.js"
-            ]
+            ],
+            "protocol": "auto"
         }
     ]
 }

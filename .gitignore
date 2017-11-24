@@ -60,3 +60,4 @@ typings/
 .DS_Store
 
 source/test/01-commit-node-typescript-project/test-node-typescript-repository
+build/test/01-commit-node-typescript-project/test-node-typescript-repository
