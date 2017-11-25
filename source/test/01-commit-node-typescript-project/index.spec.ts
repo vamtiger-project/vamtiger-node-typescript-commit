@@ -32,8 +32,8 @@ const bashInitializationParams = {
 };
 const removeRepo = `rm -rfv ${repositoryPath}`;
 
-describe.skip('vamtiger-node-typescript-commit', function () {
-    this.timeout(30000);
+describe('vamtiger-node-typescript-commit', function () {
+    this.timeout(90000);
     it('commit a node typescript project', async function () {
         let remove = await bash(removeRepo);
         const clone = await bash(`git clone "${testRepo}"`, bashInitializationParams);

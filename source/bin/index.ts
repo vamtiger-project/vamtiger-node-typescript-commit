@@ -20,7 +20,7 @@ const params = {
     publish
 };
 
-main().catch(error => handleError({error}));
+main().catch(handleError);
 
 async function main() {
     const commitChanges = await commit(params);

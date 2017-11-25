@@ -23,8 +23,7 @@ const params = {
     publish: true
 };
 const bashParams = {
-    cwd: params.repositoryPath,
-    shell: '/bin/bash'
+    cwd: params.repositoryPath
 };
 const testRepo = 'https://github.com/vamtiger-project/test-node-typescript-repository.git';
 const testRepoParentFolder = dirname(bashParams.cwd);
@@ -40,21 +39,20 @@ const vamtigerNodeTypescriptCommit = `file://${vamtigerNodeTypescriptCommitPath}
 const npmPath = resolvePath(
     dirname(process.argv[0]),
     'npm'
-)
+);
 
 describe('vamtiger-node-typescript-commit', function () {
-    this.timeout(70000);
-    it('commit a node typescript project from npm script', async function () {
+    this.timeout(90000);
+    it.skip('commit a node typescript project from npm script', async function () {
         let remove = await bash(removeRepo);
         const clone = await bash(`git clone "${testRepo}"`, bashInitializationParams);
-        const install = await bash(`npm install ${vamtigerNodeTypescriptCommit}`, bashParams)
+        const install = await bash(`npm install ${vamtigerNodeTypescriptCommit}`, bashParams);
         const checkoutSource = await bash(`git checkout source`, bashParams);
         const updateFile = await write(filePath, update);
-        const setNodeVersion = await bash(`${npmPath} run commit`, bashParams);
-        const commit = await bash(`node -v`, bashParams);
+        const commit = await bash(`${npmPath} run commit`, bashParams);
 
         expect(commit).to.be.ok;
 
         remove = await bash(removeRepo);
     })
-})
+});
