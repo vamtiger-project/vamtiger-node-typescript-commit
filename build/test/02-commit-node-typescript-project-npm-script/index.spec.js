@@ -36,16 +36,20 @@ const bashInitializationParams = {
     cwd: testRepoParentFolder
 };
 const removeRepo = `rm -rfv ${repositoryPath}`;
+const vamtigerNodeTypescriptCommitPath = path_1.resolve(__dirname, '../'.repeat(3));
+const vamtigerNodeTypescriptCommit = `file://${vamtigerNodeTypescriptCommitPath}`;
+const npmPath = path_1.resolve(path_1.dirname(process.argv[0]), 'npm');
 describe('vamtiger-node-typescript-commit', function () {
     this.timeout(90000);
-    it('commit a node typescript project', function () {
+    it.skip('commit a node typescript project from npm script', function () {
         return __awaiter(this, void 0, void 0, function* () {
             let remove = yield vamtiger_bash_1.default(removeRepo);
             const clone = yield vamtiger_bash_1.default(`git clone "${testRepo}"`, bashInitializationParams);
+            const install = yield vamtiger_bash_1.default(`npm install ${vamtigerNodeTypescriptCommit}`, bashParams);
             const checkoutSource = yield vamtiger_bash_1.default(`git checkout source`, bashParams);
             const updateFile = yield write(filePath, update);
-            const result = yield __1.default(params);
-            chai_1.expect(result).to.be.ok;
+            const commit = yield vamtiger_bash_1.default(`${npmPath} run commit`, bashParams);
+            chai_1.expect(commit).to.be.ok;
             remove = yield vamtiger_bash_1.default(removeRepo);
         });
     });

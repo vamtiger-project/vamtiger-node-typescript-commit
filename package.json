@@ -1,6 +1,6 @@
 {
   "name": "vamtiger-node-typescript-commit",
-  "version": "0.0.0",
+  "version": "0.0.2-0",
   "description": "Commits changes within a node.js-typescript project.",
   "main": "build",
   "types": "build/index.d.ts",
@@ -12,12 +12,14 @@
   "license": "MIT",
   "scripts": {
     "test": "mocha build/test --recursive",
-    "build": "tsc"
+    "build": "rm -rf build/*; tsc",
+    "commit": "vamtigerNodeTypescriptCommit --push --publish --test"
   },
   "dependencies": {
     "bluebird": "^3.5.1",
     "vamtiger-argv": "^1.2.0",
     "vamtiger-bash": "^0.0.11",
+    "vamtiger-node-typescript-commit": "file:///Users/vamtiger/Documents/Programming/VamtigerProject/vamtiger-node-typescript-commit",
     "xregexp": "^3.2.0"
   },
   "devDependencies": {
