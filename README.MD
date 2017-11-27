@@ -36,7 +36,11 @@ yarn global vamtiger-node-typescript-commit
 
 To push changes to a defined the default remote repository:
 ```bash
-npm run commit
+{
+    "scripts": {
+        "commit": "vamtigerNodeTypescriptCommit --push"
+    }
+}
 ```
 
 The latest master build can be published to [npm](https://www.npmjs.com/):
@@ -46,6 +50,11 @@ The latest master build can be published to [npm](https://www.npmjs.com/):
         "commit": "vamtigerNodeTypescriptCommit --push --publish"
     }
 }
+```
+
+Once defined as an [npm](https://www.npmjs.com/) script, (https://github.com/vamtiger-project/vamtiger-node-typescript-commit) can executed using:
+```bash
+npm run commit
 ```
 
 If installed globally, (https://github.com/vamtiger-project/vamtiger-node-typescript-commit) can be run as follows:
