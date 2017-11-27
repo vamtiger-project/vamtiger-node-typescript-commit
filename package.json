@@ -33,7 +33,7 @@
     "mocha": "^4.0.1",
     "moment": "^2.19.2",
     "typescript": "^2.6.1",
-    "vamtiger-node-typescript-commit": "^0.0.2",
+    "vamtiger-node-typescript-commit": "^0.0.10",
     "vamtiger-test-node-typescript-repository": "^0.0.36"
   }
 }
