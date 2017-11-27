@@ -57,7 +57,7 @@ Once defined as an [npm](https://www.npmjs.com/), [VAMTIGER Node Typescript Comm
 npm run commit
 ```
 
-If installed globally, (https://github.com/vamtiger-project/vamtiger-node-typescript-commit) can be run as follows:
+If installed globally, [VAMTIGER Node Typescript Commit](https://github.com/vamtiger-project/vamtiger-node-typescript-commit) can be run as follows:
 ```bash
 vamtigerNodeTypescriptCommit --push --publish
 ```
