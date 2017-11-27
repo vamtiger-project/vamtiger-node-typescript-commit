@@ -51,3 +51,8 @@ The latest master build can be published to [npm](https://www.npmjs.com/):
     ...
 }
 ```
+
+If installed globally, (https://github.com/vamtiger-project/vamtiger-node-typescript-commit) can be run as follows:
+```bash
+vamtigerNodeTypescriptCommit --push --publish
+```
