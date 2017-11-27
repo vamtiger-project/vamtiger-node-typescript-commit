@@ -219,8 +219,18 @@ vamtiger-bash@^0.0.11:
   dependencies:
     bluebird "^3.5.1"
 
+vamtiger-node-typescript-commit@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/vamtiger-node-typescript-commit/-/vamtiger-node-typescript-commit-0.0.2.tgz#ec397f0ee12fcd5af6e7aa383eb2062c54a4a433"
+  dependencies:
+    bluebird "^3.5.1"
+    vamtiger-argv "^1.2.0"
+    vamtiger-bash "^0.0.11"
+    vamtiger-node-typescript-commit "file:///Users/vamtiger/Documents/Programming/VamtigerProject/vamtiger-node-typescript-commit"
+    xregexp "^3.2.0"
+
 "vamtiger-node-typescript-commit@file:///Users/vamtiger/Documents/Programming/VamtigerProject/vamtiger-node-typescript-commit":
-  version "0.0.1-0"
+  version "0.0.2-0"
   dependencies:
     bluebird "^3.5.1"
     vamtiger-argv "^1.2.0"
