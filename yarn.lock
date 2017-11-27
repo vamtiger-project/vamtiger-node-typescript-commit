@@ -230,7 +230,7 @@ vamtiger-node-typescript-commit@^0.0.2:
     xregexp "^3.2.0"
 
 "vamtiger-node-typescript-commit@file:///Users/vamtiger/Documents/Programming/VamtigerProject/vamtiger-node-typescript-commit":
-  version "0.0.2-0"
+  version "0.0.3-0"
   dependencies:
     bluebird "^3.5.1"
     vamtiger-argv "^1.2.0"
