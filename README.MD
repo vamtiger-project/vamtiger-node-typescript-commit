@@ -13,6 +13,15 @@ or
 yarn add --dev vamtiger-node-typescript-commit
 ```
 
+[VAMTIGER Node Typescript Commit](https://github.com/vamtiger-project/vamtiger-node-typescript-commit) can also be installed globally:
+```javascript
+npm i --global vamtiger-node-typescript-commit 
+```
+or
+```javascript
+yarn global vamtiger-node-typescript-commit 
+```
+
 ## Usage
 [VAMTIGER Node Typescript Commit](https://github.com/vamtiger-project/vamtiger-node-typescript-commit) can be referenced as an [npm](https://www.npmjs.com/) script:
 ```javascript
