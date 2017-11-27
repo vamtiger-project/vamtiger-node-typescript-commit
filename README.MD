@@ -24,7 +24,7 @@ yarn global vamtiger-node-typescript-commit
 
 ## Usage
 [VAMTIGER Node Typescript Commit](https://github.com/vamtiger-project/vamtiger-node-typescript-commit) can be referenced as an [npm](https://www.npmjs.com/) script:
-```javascript
+```json
 {
     ...
     "scripts": {
@@ -42,7 +42,7 @@ npm run commit
 ```
 
 The latest master build can be published to [npm](https://www.npmjs.com/):
-```javascript
+```json
 {
     ...
     "scripts": {
