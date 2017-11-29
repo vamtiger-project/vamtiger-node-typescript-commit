@@ -2,7 +2,7 @@
 [VAMTIGER Node Typescript Commit](https://github.com/vamtiger-project/vamtiger-node-typescript-commit) commits unsaved **_source code_** on the **_source_** branch, and merges the corresponding build into the **_master_** branch. The purpose for this commit strategy is to explore the feesibility of removing any requirement/reliance on any postinstall configuration by branch-based separation of [Typescript](https://www.typescriptlang.org/) source code and the corresponding [traspiled](https://www.stevefenton.co.uk/2012/11/compiling-vs-transpiling/) result to reduce install time.<br>
 <sup>_* The **Source** branch is thus always reserved for **development**._</sup><br>
 <sup>_* The **Master** branch is thus always **derived** from the **source** branch._</sup><br>
-<img src=https://cdn.rawgit.com/vamtiger-project/vamtiger-node-typescript-commit/HEAD/asset/image/vamtiger-node-typescript-commit.svg style="max-height: 350px; background-color: #f0f0f0; border-radius: 3px">
+<img src=https://cdn.rawgit.com/vamtiger-project/vamtiger-node-typescript-commit/HEAD/asset/image/vamtiger-node-typescript-commit.svg style="max-height: 350px; background-color: #f0f0f0; border-radius: 3px" height=350>
 
 ## Installation
 [VAMTIGER Node Typescript Commit](https://github.com/vamtiger-project/vamtiger-node-typescript-commit) can be installed using [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/lang/en/):
