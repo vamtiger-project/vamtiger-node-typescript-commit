@@ -6,9 +6,9 @@
   version "3.5.18"
   resolved "https://registry.yarnpkg.com/@types/bluebird/-/bluebird-3.5.18.tgz#6a60435d4663e290f3709898a4f75014f279c4d6"
 
-"@types/chai@^4.0.5":
-  version "4.0.5"
-  resolved "https://registry.yarnpkg.com/@types/chai/-/chai-4.0.5.tgz#b6e250e281b47e0192e236619e9b1afe62fd345c"
+"@types/chai@^4.0.4", "@types/chai@^4.0.6":
+  version "4.0.6"
+  resolved "https://registry.yarnpkg.com/@types/chai/-/chai-4.0.6.tgz#9cb5a7fb7dd83be0cfcaafdbd95a2b5dd351762f"
 
 "@types/mocha@^2.2.44":
   version "2.2.44"
@@ -56,6 +56,12 @@ brace-expansion@^1.1.7:
 browser-stdout@1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/browser-stdout/-/browser-stdout-1.3.0.tgz#f351d32969d32fa5d7a5567154263d928ae3bd1f"
+
+cha@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/cha/-/cha-0.2.1.tgz#538f682da91c5e74f62839ce97c2a9279172e4be"
+  dependencies:
+    lodash "~2.4.1"
 
 chai@^4.1.2:
   version "4.1.2"
@@ -142,6 +148,10 @@ inherits@2:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.3.tgz#633c2c83e3da42a502f52466022480f4208261de"
 
+lodash@~2.4.1:
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-2.4.2.tgz#fadd834b9683073da179b3eae6d9c0d15053f73e"
+
 minimatch@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-3.0.4.tgz#5166e286457f03306064be5497e8dbb0c3d32083"
@@ -213,6 +223,16 @@ vamtiger-argv@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/vamtiger-argv/-/vamtiger-argv-1.2.0.tgz#4962fcf6aa151ac80b5917fb598de331772d5733"
 
+vamtiger-argv@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/vamtiger-argv/-/vamtiger-argv-1.2.1.tgz#fe6f4fd309097d3aa7630fded07b0687a4fdb77e"
+  dependencies:
+    "@types/chai" "^4.0.4"
+    cha "^0.2.1"
+    vamtiger-node-typescript-commit "^0.0.16"
+    vamtiger-regex-leading-dash "^1.0.10"
+    xregexp "^3.2.0"
+
 vamtiger-bash@^0.0.11:
   version "0.0.11"
   resolved "https://registry.yarnpkg.com/vamtiger-bash/-/vamtiger-bash-0.0.11.tgz#65bf9ea1206c1e6982522010caf6b66a1bff9e39"
@@ -226,6 +246,21 @@ vamtiger-node-typescript-commit@^0.0.10:
     bluebird "^3.5.1"
     vamtiger-argv "^1.2.0"
     vamtiger-bash "^0.0.11"
+    xregexp "^3.2.0"
+
+vamtiger-node-typescript-commit@^0.0.16:
+  version "0.0.16"
+  resolved "https://registry.yarnpkg.com/vamtiger-node-typescript-commit/-/vamtiger-node-typescript-commit-0.0.16.tgz#5f37c10f6369396346b4bbd6b524cd824eaebf6b"
+  dependencies:
+    bluebird "^3.5.1"
+    vamtiger-argv "^1.2.0"
+    vamtiger-bash "^0.0.11"
+    xregexp "^3.2.0"
+
+vamtiger-regex-leading-dash@^1.0.10:
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/vamtiger-regex-leading-dash/-/vamtiger-regex-leading-dash-1.0.10.tgz#80a87576c7438027c16f520f48852017895eaded"
+  dependencies:
     xregexp "^3.2.0"
 
 vamtiger-test-node-typescript-repository@^0.0.36:
