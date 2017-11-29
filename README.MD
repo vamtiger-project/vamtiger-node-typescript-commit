@@ -3,7 +3,7 @@
 <sup>_* The **Source** branch is thus always reserved for **development**._</sup><br>
 <sup>_* The **Master** branch is thus always **derived** from the **source** branch._</sup><br>
 <!-- ![overview](asset/image/vamtiger-node-typescript-commit.jpg) -->
-<img src=https://raw.githubusercontent.com/vamtiger-project/vamtiger-node-typescript-commit/HEAD/asset/image/vamtiger-node-typescript-commit.jpg>
+<img src=https://cdn.rawgit.com/vamtiger-project/vamtiger-node-typescript-commit/HEAD/asset/image/vamtiger-node-typescript-commit.svg>
 
 ## Installation
 [VAMTIGER Node Typescript Commit](https://github.com/vamtiger-project/vamtiger-node-typescript-commit) can be installed using [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/lang/en/):
