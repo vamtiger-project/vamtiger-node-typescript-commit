@@ -53,7 +53,7 @@ The latest master build can also be published to [npm](https://www.npmjs.com/):
 }
 ```
 
-Once defined as an [npm](https://www.npmjs.com/), [VAMTIGER Node Typescript Commit](https://github.com/vamtiger-project/vamtiger-node-typescript-commit) can executed using:
+Once defined as an [npm](https://www.npmjs.com/) script, [VAMTIGER Node Typescript Commit](https://github.com/vamtiger-project/vamtiger-node-typescript-commit) can executed using:
 ```bash
 npm run commit
 ```
