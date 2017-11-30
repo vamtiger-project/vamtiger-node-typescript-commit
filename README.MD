@@ -44,7 +44,7 @@ To push changes to a defined remote repository:
 }
 ```
 
-The latest master build can be published to [npm](https://www.npmjs.com/):
+The latest master build can also be published to [npm](https://www.npmjs.com/):
 ```json
 {
     "scripts": {
