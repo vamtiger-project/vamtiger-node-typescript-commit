@@ -34,7 +34,7 @@ function main() {
     });
 }
 function handleError(error) {
-    console.log(error);
+    console.warn(error);
     throw error;
 }
 //# sourceMappingURL=index.js.map

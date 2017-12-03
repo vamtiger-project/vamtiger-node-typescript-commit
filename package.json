@@ -1,6 +1,6 @@
 {
   "name": "vamtiger-node-typescript-commit",
-  "version": "0.0.41",
+  "version": "0.0.42-0",
   "description": "Commits changes within a node.js-typescript project.",
   "main": "build",
   "types": "build/index.d.ts",
@@ -33,7 +33,7 @@
     "mocha": "^4.0.1",
     "moment": "^2.19.2",
     "typescript": "^2.6.1",
-    "vamtiger-node-typescript-commit": "^0.0.10",
+    "vamtiger-node-typescript-commit": "^0.0.41",
     "vamtiger-test-node-typescript-repository": "^0.0.36"
   }
 }
