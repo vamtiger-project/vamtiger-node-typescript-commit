@@ -33,12 +33,7 @@ function main() {
         return commitChanges;
     });
 }
-function handleError(params) {
-    const error = params.error;
-    const errorMessage = error && error.message;
-    const errorStack = error && error.stack;
-    console.log(errorMessage);
-    console.log(errorStack);
+function handleError(error) {
     console.log(error);
     throw error;
 }

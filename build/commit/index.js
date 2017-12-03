@@ -40,7 +40,7 @@ function commit(options) {
         const addSource = yield vamtiger_bash_1.default('git add -A', bashOptions);
         const sourceStatus = yield vamtiger_bash_1.default('git status', bashOptions);
         const commitSourceChanges = sourceStatus.match(regex.noChanges) ? false : true;
-        const commitSource = yield vamtiger_bash_1.default(`git commit -m "${message}"`, bashOptions).catch(error => handleError({ error, bashOptions }));
+        const commitSource = yield vamtiger_bash_1.default(`git commit -m "${message}"`, bashOptions);
         const updateSource = yield vamtiger_bash_1.default(`npm version ${__1.UpdateVersion.prepatch}`, bashOptions);
         const checkoutMaster = yield vamtiger_bash_1.default(`git checkout ${masterBranch}`, bashOptions);
         const mergeFromSource = yield vamtiger_bash_1.default(`git checkout ${sourceBranch} -- .`, bashOptions);
@@ -63,11 +63,4 @@ function commit(options) {
     });
 }
 exports.default = commit;
-function handleError(params) {
-    const error = params.error;
-    const bashOptions = params.bashOptions;
-    console.warn(error.message);
-    console.warn(error.stack);
-    return Promise.reject(error);
-}
 //# sourceMappingURL=index.js.map
