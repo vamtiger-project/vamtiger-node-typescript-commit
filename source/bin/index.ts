@@ -30,9 +30,12 @@ async function main() {
 
 function handleError(params: IHandleErrorParams) {
     const error = params.error;
+    const errorMessage = error && error.message;
+    const errorStack = error && error.stack;
 
-    console.warn(error.message);
-    console.warn(error.stack);
+    console.log(errorMessage);
+    console.log(errorStack);
+    console.log(error);
     
     throw error;
 }
