@@ -35,8 +35,11 @@ function main() {
 }
 function handleError(params) {
     const error = params.error;
-    console.warn(error.message);
-    console.warn(error.stack);
+    const errorMessage = error && error.message;
+    const errorStack = error && error.stack;
+    console.log(errorMessage);
+    console.log(errorStack);
+    console.log(error);
     throw error;
 }
 //# sourceMappingURL=index.js.map
