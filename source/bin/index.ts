@@ -29,7 +29,7 @@ async function main() {
 }
 
 function handleError(error: Error) {
-    console.log(error);
+    console.warn(error);
     
     throw error;
 }
