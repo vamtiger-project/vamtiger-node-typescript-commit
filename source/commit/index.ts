@@ -34,7 +34,7 @@ export default async function commit(options: Options) {
     const addSource = await bash('git add -A', bashOptions);
     const sourceStatus = await bash('git status', bashOptions);
     const commitSourceChanges = sourceStatus.match(regex.noChanges) ? false : true;
-    const commitSource = await bash(`git commit -m "${message}"`, bashOptions).catch(error => handleError({error, bashOptions}));
+    const commitSource = await bash(`git commit -m "${message}"`, bashOptions);
     const updateSource = await bash(`npm version ${UpdateVersion.prepatch}`, bashOptions);
     const checkoutMaster = await bash(`git checkout ${masterBranch}`, bashOptions);
     const mergeFromSource = await bash(`git checkout ${sourceBranch} -- .`, bashOptions);
@@ -58,16 +58,6 @@ export default async function commit(options: Options) {
         publishUpdate = await bash(`npm publish`);
 
     return true;
-}
-
-function handleError(params: IHandleError) {
-    const error = params.error;
-    const bashOptions = params.bashOptions;
-
-    console.warn(error.message);
-    console.warn(error.stack);
-        
-    return Promise.reject(error);
 }
 
 interface IHandleError {

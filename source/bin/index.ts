@@ -28,18 +28,8 @@ async function main() {
     return commitChanges;
 }
 
-function handleError(params: IHandleErrorParams) {
-    const error = params.error;
-    const errorMessage = error && error.message;
-    const errorStack = error && error.stack;
-
-    console.log(errorMessage);
-    console.log(errorStack);
+function handleError(error: Error) {
     console.log(error);
     
     throw error;
-}
-
-interface IHandleErrorParams {
-    error: Error;
 }
