@@ -58,6 +58,11 @@ Once defined as an [npm](https://www.npmjs.com/) script, [VAMTIGER Node Typescri
 npm run commit
 ```
 
+A custom commit meessage can also be defined:
+```bash
+npm run commit -- --commitMessage "Some custom commit message"
+```
+
 If installed globally, [VAMTIGER Node Typescript Commit](https://github.com/vamtiger-project/vamtiger-node-typescript-commit) can be run as follows:
 ```bash
 vamtigerNodeTypescriptCommit --push --publish
