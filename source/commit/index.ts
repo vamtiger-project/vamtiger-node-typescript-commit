@@ -13,6 +13,7 @@ const args = new Args();
 const argCommitMessage = args.get('commitMessage') || '';
 
 let commitMessage = 'vamtiger-node-typescript-commit' + argCommitMessage ? `: ${argCommitMessage}` : argCommitMessage;
+console.log(commitMessage)
 
 export default async function commit(options: Options) {
     // const test = options.test;
