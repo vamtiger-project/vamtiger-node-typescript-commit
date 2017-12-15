@@ -61,4 +61,4 @@ npm run commit
 If installed globally, [VAMTIGER Node Typescript Commit](https://github.com/vamtiger-project/vamtiger-node-typescript-commit) can be run as follows:
 ```bash
 vamtigerNodeTypescriptCommit --push --publish
-``` 
+```
