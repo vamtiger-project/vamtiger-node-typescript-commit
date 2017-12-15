@@ -12,10 +12,13 @@ const vamtiger_bash_1 = require("vamtiger-bash");
 const path_1 = require("path");
 const XRegExp = require("xregexp");
 const __1 = require("..");
+const Args = require("vamtiger-argv");
 const regex = {
     noChanges: XRegExp('nothing to commit', 'msi')
 };
-let commitMessage = 'vamtiger-node-typescript-commit';
+const args = new Args();
+const argCommitMessage = args.get('commitMessage') || '';
+let commitMessage = 'vamtiger-node-typescript-commit' + argCommitMessage ? `: ${argCommitMessage}` : argCommitMessage;
 function commit(options) {
     return __awaiter(this, void 0, void 0, function* () {
         const test = options.test;
