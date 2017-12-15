@@ -4,12 +4,15 @@ import { PathLike } from 'fs';
 import { resolve as resolvePath, basename} from 'path';
 import * as XRegExp from 'xregexp';
 import { Options, UpdateVersion, Folder, RunScript, BuildScript } from '..';
+import Args = require('vamtiger-argv');
 
 const regex = {
     noChanges: XRegExp('nothing to commit', 'msi')
 };
+const args = new Args();
+const argCommitMessage = args.get('commitMessage') || '';
 
-let commitMessage = 'vamtiger-node-typescript-commit';
+let commitMessage = 'vamtiger-node-typescript-commit' + argCommitMessage ? `: ${argCommitMessage}` : argCommitMessage;
 
 export default async function commit(options: Options) {
     const test = options.test;
