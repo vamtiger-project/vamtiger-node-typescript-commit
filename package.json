@@ -1,6 +1,6 @@
 {
   "name": "vamtiger-node-typescript-commit",
-  "version": "0.0.45-0",
+  "version": "0.0.46-0",
   "description": "Commits changes within a node.js-typescript project.",
   "main": "build",
   "types": "build/index.d.ts",
