@@ -63,6 +63,11 @@ A custom commit meessage can also be defined:
 npm run commit -- --commitMessage "Some custom commit message"
 ```
 
+TS config file can be retained:
+```bash
+npm run commit -- --keepTsConfig
+```
+
 If installed globally, [VAMTIGER Node Typescript Commit](https://github.com/vamtiger-project/vamtiger-node-typescript-commit) can be run as follows:
 ```bash
 vamtigerNodeTypescriptCommit --push --publish

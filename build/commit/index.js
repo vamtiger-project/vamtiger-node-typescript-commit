@@ -49,7 +49,13 @@ function commit(options) {
         const checkoutMaster = yield vamtiger_bash_1.default(`git checkout ${masterBranch}`, bashOptions);
         const mergeFromSource = yield vamtiger_bash_1.default(`git checkout ${sourceBranch} -- .`, bashOptions);
         const build = yield vamtiger_bash_1.default(`${runScript} ${buildScript}`, bashOptions);
-        const removeRedundantSource = yield vamtiger_bash_1.default(`rm -rfv ${repositoryPath}/yarn.lock ${repositoryPath}/tsconfig.json ${repositoryPath}/.vscode ${sourceFolder}`, bashOptions);
+        const redundantSource = [
+            path_1.resolve(repositoryPath, 'yarn.lock'),
+            args.has('keepTsConfig') ? '' : path_1.resolve(repositoryPath, 'tsconfig.json'),
+            path_1.resolve(repositoryPath, '.vscode'),
+            sourceFolder
+        ].join(' ');
+        const removeRedundantSource = yield vamtiger_bash_1.default(`rm -rfv ${redundantSource}`, bashOptions);
         const addBuild = yield vamtiger_bash_1.default('git add -A', bashOptions);
         const masterStatus = yield vamtiger_bash_1.default('git status', bashOptions);
         const commitBuild = yield vamtiger_bash_1.default(`git commit -m "${message}"`, bashOptions);
