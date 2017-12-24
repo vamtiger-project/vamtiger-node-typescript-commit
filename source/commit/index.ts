@@ -43,7 +43,13 @@ export default async function commit(options: Options) {
     const checkoutMaster = await bash(`git checkout ${masterBranch}`, bashOptions);
     const mergeFromSource = await bash(`git checkout ${sourceBranch} -- .`, bashOptions);
     const build = await bash(`${runScript} ${buildScript}`, bashOptions);
-    const removeRedundantSource = await bash(`rm -rfv ${repositoryPath}/yarn.lock ${repositoryPath}/tsconfig.json ${repositoryPath}/.vscode ${sourceFolder}`, bashOptions);
+    const redundantSource = [
+        resolvePath(repositoryPath, 'yarn.lock'),
+        args.has('keepTsConfig') ? '' : resolvePath(repositoryPath, 'tsconfig.json'),
+        resolvePath(repositoryPath, '.vscode'),
+        sourceFolder
+    ].join(' ')
+    const removeRedundantSource = await bash(`rm -rfv ${redundantSource}`, bashOptions);
     const addBuild = await bash('git add -A', bashOptions);
     const masterStatus = await bash('git status', bashOptions);
     const commitBuild = await bash(`git commit -m "${message}"`, bashOptions);
