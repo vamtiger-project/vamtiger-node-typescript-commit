@@ -5,7 +5,8 @@
   "main": "build",
   "types": "build/index.d.ts",
   "bin": {
-    "vamtigerNodeTypescriptCommit": "build/bin/index.js"
+    "vamtigerNodeTypescriptCommit": "build/bin/index.js",
+    "vamtiger-node-typescript-commit": "build/bin/index.js"
   },
   "repository": "https://github.com/vamtiger-project/vamtiger-node-typescript-commit.git",
   "author": "Vamtiger Immortalles",
