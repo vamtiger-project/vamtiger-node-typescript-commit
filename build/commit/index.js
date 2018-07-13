@@ -19,6 +19,8 @@ const regex = {
 const args = new Args();
 const commitMessagePrefix = 'vamtiger-node-typescript-commit';
 const argCommitMessageSuffix = args.get('commitMessage') || '';
+const otp = args.get('otp') || '';
+const otpArg = otp ? `--otp=${otp}` : '';
 let commitMessage = argCommitMessageSuffix ? `${commitMessagePrefix}: ${argCommitMessageSuffix}` : commitMessagePrefix;
 function commit(options) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -68,7 +70,7 @@ function commit(options) {
             pushBuildUpdate = yield vamtiger_bash_1.default(`git push -f origin ${masterBranch} --tags`);
         }
         if (publish)
-            publishUpdate = yield vamtiger_bash_1.default(`npm publish`);
+            publishUpdate = yield vamtiger_bash_1.default(`npm publish ${otpArg}`);
         return true;
     });
 }
