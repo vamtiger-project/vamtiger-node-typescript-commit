@@ -20,7 +20,7 @@ let commitMessage = argCommitMessageSuffix ? `${commitMessagePrefix}: ${argCommi
 export default async function commit(options: Options) {
     const test = options.test;
     const updateVersion = options.updateVersion ? options.updateVersion : UpdateVersion.patch;
-    const repositoryPath = options.repositoryPath ? options.repositoryPath : process.argv[1];
+    const repositoryPath = options.repositoryPath ? options.repositoryPath as string : process.argv[1];
     const sourceBranch = options.sourceBranch ? options.sourceBranch : 'source';
     const masterBranch = options.masterBranch ? options.masterBranch : 'master';
     const sourceFolder = options.sourceFolder ? options.sourceFolder : resolvePath(repositoryPath, Folder.source);

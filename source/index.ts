@@ -11,7 +11,7 @@ export default async function main(options: Options) {
 
     result = await commit(options);
 
-    return result
+    return result;
 };
 
 export interface Options {
