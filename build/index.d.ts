@@ -18,16 +18,16 @@ export declare enum UpdateVersion {
     patch = "patch",
     minor = "minor",
     major = "major",
-    prepatch = "prepatch",
+    prepatch = "prepatch"
 }
 export declare enum RunScript {
     npm = "npm run",
-    yarn = "yarn",
+    yarn = "yarn"
 }
 export declare enum BuildScript {
-    build = "build",
+    build = "build"
 }
 export declare enum Folder {
     source = "source",
-    build = "build",
+    build = "build"
 }
