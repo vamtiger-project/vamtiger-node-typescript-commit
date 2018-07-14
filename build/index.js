@@ -7,7 +7,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
 Object.defineProperty(exports, "__esModule", { value: true });
+__export(require("./types"));
 const commit_1 = require("./commit");
 function main(options) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -21,25 +25,4 @@ function main(options) {
 }
 exports.default = main;
 ;
-var UpdateVersion;
-(function (UpdateVersion) {
-    UpdateVersion["patch"] = "patch";
-    UpdateVersion["minor"] = "minor";
-    UpdateVersion["major"] = "major";
-    UpdateVersion["prepatch"] = "prepatch";
-})(UpdateVersion = exports.UpdateVersion || (exports.UpdateVersion = {}));
-var RunScript;
-(function (RunScript) {
-    RunScript["npm"] = "npm run";
-    RunScript["yarn"] = "yarn";
-})(RunScript = exports.RunScript || (exports.RunScript = {}));
-var BuildScript;
-(function (BuildScript) {
-    BuildScript["build"] = "build";
-})(BuildScript = exports.BuildScript || (exports.BuildScript = {}));
-var Folder;
-(function (Folder) {
-    Folder["source"] = "source";
-    Folder["build"] = "build";
-})(Folder = exports.Folder || (exports.Folder = {}));
 //# sourceMappingURL=index.js.map

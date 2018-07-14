@@ -11,29 +11,29 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const vamtiger_bash_1 = require("vamtiger-bash");
 const path_1 = require("path");
 const XRegExp = require("xregexp");
-const __1 = require("..");
+const index_1 = require("../index");
 const Args = require("vamtiger-argv");
 const regex = {
     noChanges: XRegExp('nothing to commit', 'msi')
 };
 const args = new Args();
 const commitMessagePrefix = 'vamtiger-node-typescript-commit';
-const argCommitMessageSuffix = args.get('commitMessage') || '';
-const otp = args.get('otp') || '';
+const argCommitMessageSuffix = args.get(index_1.CommandlineArgument.commitMessage) || args.get(index_1.CommandlineArgument.c) || '';
+const otp = args.get(index_1.CommandlineArgument.otp) || args.get(index_1.CommandlineArgument.o) || '';
 const otpArg = otp ? `--otp=${otp}` : '';
 let commitMessage = argCommitMessageSuffix ? `${commitMessagePrefix}: ${argCommitMessageSuffix}` : commitMessagePrefix;
 function commit(options) {
     return __awaiter(this, void 0, void 0, function* () {
         const test = options.test;
-        const updateVersion = options.updateVersion ? options.updateVersion : __1.UpdateVersion.patch;
+        const updateVersion = options.updateVersion ? options.updateVersion : index_1.UpdateVersion.patch;
         const repositoryPath = options.repositoryPath ? options.repositoryPath : process.argv[1];
         const sourceBranch = options.sourceBranch ? options.sourceBranch : 'source';
         const masterBranch = options.masterBranch ? options.masterBranch : 'master';
-        const sourceFolder = options.sourceFolder ? options.sourceFolder : path_1.resolve(repositoryPath, __1.Folder.source);
+        const sourceFolder = options.sourceFolder ? options.sourceFolder : path_1.resolve(repositoryPath, index_1.Folder.source);
         const sourceFolderName = path_1.basename(sourceFolder);
-        const buildFolder = options.buildFolder ? options.buildFolder : path_1.resolve(repositoryPath, __1.Folder.build);
-        const runScript = options.runScript ? options.runScript : __1.RunScript.npm;
-        const buildScript = options.buildScript ? options.buildScript : __1.BuildScript.build;
+        const buildFolder = options.buildFolder ? options.buildFolder : path_1.resolve(repositoryPath, index_1.Folder.build);
+        const runScript = options.runScript ? options.runScript : index_1.RunScript.npm;
+        const buildScript = options.buildScript ? options.buildScript : index_1.BuildScript.build;
         const push = options.push ? true : false;
         const publish = push && options.publish ? true : false;
         const bashOptions = {
@@ -47,7 +47,7 @@ function commit(options) {
         const sourceStatus = yield vamtiger_bash_1.default('git status', bashOptions);
         const commitSourceChanges = sourceStatus.match(regex.noChanges) ? false : true;
         const commitSource = yield vamtiger_bash_1.default(`git commit -m "${message}"`, bashOptions);
-        const updateSource = yield vamtiger_bash_1.default(`npm version ${__1.UpdateVersion.prepatch}`, bashOptions);
+        const updateSource = yield vamtiger_bash_1.default(`npm version ${index_1.UpdateVersion.prepatch}`, bashOptions);
         const checkoutMaster = yield vamtiger_bash_1.default(`git checkout ${masterBranch}`, bashOptions);
         const mergeFromSource = yield vamtiger_bash_1.default(`git checkout ${sourceBranch} -- .`, bashOptions);
         const build = yield vamtiger_bash_1.default(`${runScript} ${buildScript}`, bashOptions);

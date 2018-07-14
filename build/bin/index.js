@@ -9,13 +9,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const __1 = require("..");
-const __2 = require("..");
+const __1 = require("../");
+const display_help_1 = require("../display-help");
+const __2 = require("../");
 exports.default = __1.default;
 const Args = require('vamtiger-argv');
 const args = new Args();
 const test = args.has('test');
-const runScript = args.has('runscript') ? args.get('runscript') : __2.RunScript.npm;
+const runScript = args.has(__2.CommandlineArgument.runscript) ? args.get(__2.CommandlineArgument.runscript) : __2.RunScript.npm;
+const help = args.has(__2.CommandlineArgument.help) || args.has(__2.CommandlineArgumentShort.help);
 const repositoryPath = process.cwd();
 const push = args.has('push');
 const publish = args.has('publish');
@@ -26,7 +28,10 @@ const params = {
     push,
     publish
 };
-main().catch(handleError);
+if (help)
+    display_help_1.default();
+else
+    main().catch(handleError);
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
         const commitChanges = yield __1.default(params);
