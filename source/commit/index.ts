@@ -3,7 +3,7 @@ import bash from 'vamtiger-bash';
 import { PathLike } from 'fs';
 import { resolve as resolvePath, basename} from 'path';
 import * as XRegExp from 'xregexp';
-import { Options, UpdateVersion, Folder, RunScript, BuildScript } from '..';
+import { Options, UpdateVersion, Folder, RunScript, BuildScript, CommandlineArgument } from '../index';
 import Args = require('vamtiger-argv');
 
 const regex = {
@@ -11,8 +11,8 @@ const regex = {
 };
 const args = new Args();
 const commitMessagePrefix = 'vamtiger-node-typescript-commit';
-const argCommitMessageSuffix = args.get('commitMessage') || '';
-const otp = args.get('otp') || '';
+const argCommitMessageSuffix = args.get(CommandlineArgument.commitMessage) || args.get(CommandlineArgument.c) || '';
+const otp = args.get(CommandlineArgument.otp) || args.get(CommandlineArgument.o)  || '';
 const otpArg = otp ? `--otp=${otp}` : '';
 
 let commitMessage = argCommitMessageSuffix ? `${commitMessagePrefix}: ${argCommitMessageSuffix}` : commitMessagePrefix;

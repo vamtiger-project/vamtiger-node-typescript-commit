@@ -1,4 +1,6 @@
-import { PathLike } from 'fs';
+export * from './types';
+
+import { Options } from './types';
 import commit from './commit';
 
 export default async function main(options: Options) {
@@ -13,38 +15,3 @@ export default async function main(options: Options) {
 
     return result;
 };
-
-export interface Options {
-    test?: boolean;
-    updateVersion?: UpdateVersion;
-    sourceBranch?: string;
-    masterBranch?: string
-    sourceFolder?: PathLike|string;
-    buildFolder?: PathLike|string;
-    runScript?: RunScript;
-    buildScript?: BuildScript|string;
-    push?: boolean;
-    publish?: boolean;
-    repositoryPath?: PathLike|string;
-}
-
-export enum UpdateVersion {
-    patch = "patch",
-    minor = "minor",
-    major = "major",
-    prepatch = "prepatch"
-}
-
-export enum RunScript {
-    npm = "npm run",
-    yarn = "yarn"
-}
-
-export enum BuildScript {
-    build = "build"
-}
-
-export enum Folder {
-    source = "source",
-    build = "build"
-}

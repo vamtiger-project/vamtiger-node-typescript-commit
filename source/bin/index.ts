@@ -1,14 +1,16 @@
 #!/usr/bin/env node
 
-import commit from '..';
-import { RunScript } from '..';
+import commit from '../';
+import displayHelp from '../display-help';
+import { RunScript, CommandlineArgument, CommandlineArgumentShort } from '../';
 
 export default commit;
 
 const Args = require('vamtiger-argv');
 const args = new Args();
 const test = args.has('test');
-const runScript = args.has('runscript') ? args.get('runscript') as RunScript : RunScript.npm;
+const runScript = args.has(CommandlineArgument.runscript) ? args.get(CommandlineArgument.runscript) as RunScript : RunScript.npm;
+const help = args.has(CommandlineArgument.help) || args.has(CommandlineArgumentShort.help)
 const repositoryPath = process.cwd();
 const push = args.has('push') as boolean;
 const publish = args.has('publish') as boolean;
@@ -20,7 +22,10 @@ const params = {
     publish
 };
 
-main().catch(handleError);
+if (help)
+    displayHelp();
+else
+    main().catch(handleError);
 
 async function main() {
     const commitChanges = await commit(params);
@@ -30,6 +35,6 @@ async function main() {
 
 function handleError(error: Error) {
     console.warn(error);
-    
+
     throw error;
 }
