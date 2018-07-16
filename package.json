@@ -1,6 +1,6 @@
 {
   "name": "vamtiger-node-typescript-commit",
-  "version": "0.0.56",
+  "version": "0.0.57-0",
   "description": "Commits changes within a node.js-typescript project.",
   "main": "build",
   "types": "build/index.d.ts",
@@ -21,7 +21,7 @@
     "bluebird": "^3.5.1",
     "vamtiger-argv": "^1.2.1",
     "vamtiger-bash": "^0.0.11",
-    "vamtiger-get-string-table": "0.0.6",
+    "vamtiger-get-string-table": "latest",
     "xregexp": "^3.2.0"
   },
   "devDependencies": {
