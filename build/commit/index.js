@@ -54,6 +54,7 @@ function commit(options) {
         const redundantSource = [
             path_1.resolve(repositoryPath, 'yarn.lock'),
             args.has('keepTsConfig') ? '' : path_1.resolve(repositoryPath, 'tsconfig.json'),
+            args.has('keepTsConfig') ? '' : path_1.resolve(repositoryPath, 'tsconfig-declaration.json'),
             path_1.resolve(repositoryPath, '.vscode'),
             sourceFolder
         ].join(' ');
