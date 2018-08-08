@@ -14,6 +14,7 @@ const commitMessagePrefix = 'vamtiger-node-typescript-commit';
 const argCommitMessageSuffix = args.get(CommandlineArgument.commitMessage) || args.get(CommandlineArgument.c) || '';
 const otp = args.get(CommandlineArgument.otp) || args.get(CommandlineArgument.o)  || '';
 const otpArg = otp ? `--otp=${otp}` : '';
+const buildScriptArg = args.get(CommandlineArgument.buildScript) || args.get(CommandlineArgument.b)  || '';
 
 let commitMessage = argCommitMessageSuffix ? `${commitMessagePrefix}: ${argCommitMessageSuffix}` : commitMessagePrefix;
 
@@ -27,7 +28,7 @@ export default async function commit(options: Options) {
     const sourceFolderName = basename(sourceFolder as string);
     const buildFolder = options.buildFolder ? options.buildFolder : resolvePath(repositoryPath, Folder.build);
     const runScript = options.runScript ? options.runScript : RunScript.npm;
-    const buildScript = options.buildScript ? options.buildScript : BuildScript.build;
+    const buildScript = buildScriptArg || options.buildScript && options.buildScript || BuildScript.build;
     const push = options.push ? true : false;
     const publish = push && options.publish ? true : false;
     const bashOptions = {
