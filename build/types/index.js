@@ -23,6 +23,8 @@ var Folder;
 })(Folder = exports.Folder || (exports.Folder = {}));
 var CommandlineArgument;
 (function (CommandlineArgument) {
+    CommandlineArgument["buildScript"] = "buildScript";
+    CommandlineArgument["b"] = "b";
     CommandlineArgument["commitMessage"] = "commitMessage";
     CommandlineArgument["c"] = "c";
     CommandlineArgument["help"] = "help";

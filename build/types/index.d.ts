@@ -31,6 +31,8 @@ export declare enum Folder {
     build = "build"
 }
 export declare enum CommandlineArgument {
+    buildScript = "buildScript",
+    b = "b",
     commitMessage = "commitMessage",
     c = "c",
     help = "help",
