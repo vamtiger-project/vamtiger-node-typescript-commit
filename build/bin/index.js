@@ -21,12 +21,16 @@ const help = args.has(__2.CommandlineArgument.help) || args.has(__2.CommandlineA
 const repositoryPath = process.cwd();
 const push = args.has('push');
 const publish = args.has('publish');
+const buildFolder = (args.has(__2.CommandlineArgument.j) || args.has(__2.CommandlineArgument.buildFolder)) && args.get(__2.CommandlineArgument.buildFolder);
+const sourceFolder = (args.has(__2.CommandlineArgument.s) || args.has(__2.CommandlineArgument.sourceFolder)) && args.get(__2.CommandlineArgument.sourceFolder);
 const params = {
     test,
     runScript,
     repositoryPath,
     push,
-    publish
+    publish,
+    buildFolder,
+    sourceFolder
 };
 if (help)
     display_help_1.default();

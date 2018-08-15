@@ -16,14 +16,19 @@ yarn add --dev vamtiger-node-typescript-commit
 
 [VAMTIGER Node Typescript Commit](https://github.com/vamtiger-project/vamtiger-node-typescript-commit) can also be installed globally:
 ```javascript
-npm i --global vamtiger-node-typescript-commit 
+npm i --global vamtiger-node-typescript-commit
 ```
 or
 ```javascript
-yarn global vamtiger-node-typescript-commit 
+yarn global vamtiger-node-typescript-commit
 ```
 
 ## Usage
+Customiseable options can be listed:
+```bash
+vamtiger-node-typescript-commit --help
+```
+
 [VAMTIGER Node Typescript Commit](https://github.com/vamtiger-project/vamtiger-node-typescript-commit) can be referenced as an [npm](https://www.npmjs.com/) script:
 ```json
 {
@@ -61,6 +66,11 @@ npm run commit
 A custom commit meessage can also be defined:
 ```bash
 npm run commit -- --commitMessage "Some custom commit message"
+```
+
+Custom folder names can also be defined:
+```bash
+npm run commit -- --buildFolder "build" --sourceFolder "source # default
 ```
 
 TS config file can be retained:

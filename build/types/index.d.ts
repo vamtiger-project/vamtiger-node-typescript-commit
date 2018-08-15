@@ -31,6 +31,8 @@ export declare enum Folder {
     build = "build"
 }
 export declare enum CommandlineArgument {
+    buildFolder = "buildFolder",
+    j = "j",
     buildScript = "buildScript",
     b = "b",
     commitMessage = "commitMessage",
@@ -40,18 +42,24 @@ export declare enum CommandlineArgument {
     otp = "otp",
     o = "o",
     runscript = "runscript",
-    r = "r"
+    r = "r",
+    sourceFolder = "sourceFolder",
+    s = "s"
 }
 export declare enum CommandlineArgumentShort {
+    buildFolder = "j",
     commitMessage = "c",
     help = "h",
     otp = "o",
-    runscript = "r"
+    runscript = "r",
+    sourceFolder = "s"
 }
 export declare enum CommandlineArgumentDescription {
+    buildFolder = "Name of the source folder (default = \"source\")",
     commitMessage = "Git commit message",
     help = "List all commandline arguments",
     otp = "One time password",
-    runscript = "Run script (npm, yarn)"
+    runscript = "Run script (npm, yarn)",
+    sourceFolder = "Name of the source folder (default = \"source\")"
 }
 export declare type CommandlineArgumentKey = keyof typeof CommandlineArgumentDescription;

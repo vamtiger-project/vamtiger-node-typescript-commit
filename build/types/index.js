@@ -23,6 +23,8 @@ var Folder;
 })(Folder = exports.Folder || (exports.Folder = {}));
 var CommandlineArgument;
 (function (CommandlineArgument) {
+    CommandlineArgument["buildFolder"] = "buildFolder";
+    CommandlineArgument["j"] = "j";
     CommandlineArgument["buildScript"] = "buildScript";
     CommandlineArgument["b"] = "b";
     CommandlineArgument["commitMessage"] = "commitMessage";
@@ -33,19 +35,25 @@ var CommandlineArgument;
     CommandlineArgument["o"] = "o";
     CommandlineArgument["runscript"] = "runscript";
     CommandlineArgument["r"] = "r";
+    CommandlineArgument["sourceFolder"] = "sourceFolder";
+    CommandlineArgument["s"] = "s";
 })(CommandlineArgument = exports.CommandlineArgument || (exports.CommandlineArgument = {}));
 var CommandlineArgumentShort;
 (function (CommandlineArgumentShort) {
+    CommandlineArgumentShort["buildFolder"] = "j";
     CommandlineArgumentShort["commitMessage"] = "c";
     CommandlineArgumentShort["help"] = "h";
     CommandlineArgumentShort["otp"] = "o";
     CommandlineArgumentShort["runscript"] = "r";
+    CommandlineArgumentShort["sourceFolder"] = "s";
 })(CommandlineArgumentShort = exports.CommandlineArgumentShort || (exports.CommandlineArgumentShort = {}));
 var CommandlineArgumentDescription;
 (function (CommandlineArgumentDescription) {
+    CommandlineArgumentDescription["buildFolder"] = "Name of the source folder (default = \"source\")";
     CommandlineArgumentDescription["commitMessage"] = "Git commit message";
     CommandlineArgumentDescription["help"] = "List all commandline arguments";
     CommandlineArgumentDescription["otp"] = "One time password";
     CommandlineArgumentDescription["runscript"] = "Run script (npm, yarn)";
+    CommandlineArgumentDescription["sourceFolder"] = "Name of the source folder (default = \"source\")";
 })(CommandlineArgumentDescription = exports.CommandlineArgumentDescription || (exports.CommandlineArgumentDescription = {}));
 //# sourceMappingURL=index.js.map
