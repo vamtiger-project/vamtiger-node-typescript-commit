@@ -62,7 +62,7 @@ export enum CommandlineArgumentShort {
 }
 
 export enum CommandlineArgumentDescription {
-    buildFolder = 'Name of the source folder (default = "source")',
+    buildFolder = 'Name of the source folder (default = "build")',
     commitMessage = 'Git commit message',
     help = 'List all commandline arguments',
     otp = 'One time password',
