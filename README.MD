@@ -33,7 +33,7 @@ vamtiger-node-typescript-commit --help
 ```json
 {
     "scripts": {
-        "commit": "vamtigerNodeTypescriptCommit"
+        "commit": "vamtiger-node-typescript-commit"
     }
 }
 ```
@@ -44,7 +44,7 @@ To push changes to a defined remote repository:
 ```bash
 {
     "scripts": {
-        "commit": "vamtigerNodeTypescriptCommit --push"
+        "commit": "vamtiger-node-typescript-commit --push"
     }
 }
 ```
@@ -53,7 +53,7 @@ The latest master build can also be published to [npm](https://www.npmjs.com/):
 ```json
 {
     "scripts": {
-        "commit": "vamtigerNodeTypescriptCommit --push --publish"
+        "commit": "vamtiger-node-typescript-commit --push --publish"
     }
 }
 ```
@@ -80,5 +80,5 @@ npm run commit -- --keepTsConfig
 
 If installed globally, [VAMTIGER Node Typescript Commit](https://github.com/vamtiger-project/vamtiger-node-typescript-commit) can be run as follows:
 ```bash
-vamtigerNodeTypescriptCommit --push --publish --otp 123456
+vamtiger-node-typescript-commit --push --publish --otp 123456
 ```
