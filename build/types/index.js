@@ -49,7 +49,7 @@ var CommandlineArgumentShort;
 })(CommandlineArgumentShort = exports.CommandlineArgumentShort || (exports.CommandlineArgumentShort = {}));
 var CommandlineArgumentDescription;
 (function (CommandlineArgumentDescription) {
-    CommandlineArgumentDescription["buildFolder"] = "Name of the source folder (default = \"source\")";
+    CommandlineArgumentDescription["buildFolder"] = "Name of the source folder (default = \"build\")";
     CommandlineArgumentDescription["commitMessage"] = "Git commit message";
     CommandlineArgumentDescription["help"] = "List all commandline arguments";
     CommandlineArgumentDescription["otp"] = "One time password";
