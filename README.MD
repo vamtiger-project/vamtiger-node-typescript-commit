@@ -44,16 +44,17 @@ To push changes to a defined remote repository:
 ```bash
 {
     "scripts": {
-        "commit": "vamtiger-node-typescript-commit --push"
+        "commit": "vamtiger-node-typescript-commit -- --push"
     }
 }
 ```
+<sup>_* "--" before options._</sup><br>
 
 The latest master build can also be published to [npm](https://www.npmjs.com/):
 ```json
 {
     "scripts": {
-        "commit": "vamtiger-node-typescript-commit --push --publish"
+        "commit": "vamtiger-node-typescript-commit -- --push --publish"
     }
 }
 ```
@@ -65,17 +66,17 @@ npm run commit
 
 A custom commit meessage can also be defined:
 ```bash
-npm run commit -- --commitMessage "Some custom commit message"
+npm run commit --commitMessage "Some custom commit message"
 ```
 
 Custom folder names can also be defined:
 ```bash
-npm run commit -- --buildFolder "build" --sourceFolder "source # default
+npm run commit --buildFolder "build" --sourceFolder "source # default
 ```
 
 TS config file can be retained:
 ```bash
-npm run commit -- --keepTsConfig
+npm run commit --keepTsConfig
 ```
 
 If installed globally, [VAMTIGER Node Typescript Commit](https://github.com/vamtiger-project/vamtiger-node-typescript-commit) can be run as follows:
