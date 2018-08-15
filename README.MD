@@ -71,7 +71,7 @@ npm run commit --commitMessage "Some custom commit message"
 
 Custom folder names can also be defined:
 ```bash
-npm run commit --buildFolder "build" --sourceFolder "source # default
+npm run commit --buildFolder "build" --sourceFolder "source" # default
 ```
 
 TS config file can be retained:
