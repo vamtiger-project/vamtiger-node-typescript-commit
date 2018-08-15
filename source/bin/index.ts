@@ -14,12 +14,16 @@ const help = args.has(CommandlineArgument.help) || args.has(CommandlineArgumentS
 const repositoryPath = process.cwd();
 const push = args.has('push') as boolean;
 const publish = args.has('publish') as boolean;
+const buildFolder = (args.has(CommandlineArgument.j) || args.has(CommandlineArgument.buildFolder)) && args.get(CommandlineArgument.buildFolder);
+const sourceFolder = (args.has(CommandlineArgument.s) || args.has(CommandlineArgument.sourceFolder)) && args.get(CommandlineArgument.sourceFolder);
 const params = {
     test,
     runScript,
     repositoryPath,
     push,
-    publish
+    publish,
+    buildFolder,
+    sourceFolder
 };
 
 if (help)
