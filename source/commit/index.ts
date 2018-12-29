@@ -51,10 +51,8 @@ export default async function commit(options: Options) {
     const sourceDistTagsScript = `npm dist-tags add ${packageName}@${sourcePackageVersion} source ${otpArg}`;
     
     if (publishSource) {
-        await Promise.all([
-            bash(publishScript, bashOptions),
-            bash(sourceDistTagsScript, bashOptions)
-        ]);
+        await bash(publishScript, bashOptions);
+        await bash(sourceDistTagsScript, bashOptions);
     }
 
     const checkoutMaster = await bash(`git checkout ${masterBranch}`, bashOptions);
