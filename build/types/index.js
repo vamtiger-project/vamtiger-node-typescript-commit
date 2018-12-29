@@ -37,6 +37,8 @@ var CommandlineArgument;
     CommandlineArgument["r"] = "r";
     CommandlineArgument["sourceFolder"] = "sourceFolder";
     CommandlineArgument["s"] = "s";
+    CommandlineArgument["publishSource"] = "publishSource";
+    CommandlineArgument["P"] = "P";
 })(CommandlineArgument = exports.CommandlineArgument || (exports.CommandlineArgument = {}));
 var CommandlineArgumentShort;
 (function (CommandlineArgumentShort) {

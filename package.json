@@ -1,6 +1,6 @@
 {
   "name": "vamtiger-node-typescript-commit",
-  "version": "0.0.65",
+  "version": "0.0.66-0",
   "description": "Commits changes within a node.js-typescript project.",
   "main": "build",
   "types": "build/index.d.ts",
@@ -15,7 +15,7 @@
     "test": "mocha build/test --recursive",
     "build": "rm -rf build/*; tsc",
     "watch": "tsc --watch",
-    "commit": "vamtigerNodeTypescriptCommit --push --publish"
+    "commit": "node build/bin --push --publish --publishSource"
   },
   "dependencies": {
     "bluebird": "^3.5.1",

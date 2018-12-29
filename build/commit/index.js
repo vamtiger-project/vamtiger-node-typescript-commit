@@ -21,6 +21,8 @@ const commitMessagePrefix = 'vamtiger-node-typescript-commit';
 const argCommitMessageSuffix = args.get(index_1.CommandlineArgument.commitMessage) || args.get(index_1.CommandlineArgument.c) || '';
 const otp = args.get(index_1.CommandlineArgument.otp) || args.get(index_1.CommandlineArgument.o) || '';
 const otpArg = otp ? `--otp=${otp}` : '';
+const publishScript = `npm publish ${otpArg}`;
+const publishSource = args.get(index_1.CommandlineArgument.publishSource) || args.get(index_1.CommandlineArgument.P) || '';
 const buildScriptArg = args.get(index_1.CommandlineArgument.buildScript) || args.get(index_1.CommandlineArgument.b) || '';
 let commitMessage = argCommitMessageSuffix ? `${commitMessagePrefix}: ${argCommitMessageSuffix}` : commitMessagePrefix;
 function commit(options) {
@@ -49,6 +51,9 @@ function commit(options) {
         const commitSourceChanges = sourceStatus.match(regex.noChanges) ? false : true;
         const commitSource = yield vamtiger_bash_1.default(`git commit -m "${message}"`, bashOptions);
         const updateSource = yield vamtiger_bash_1.default(`npm version ${index_1.UpdateVersion.prepatch}`, bashOptions);
+        if (publishSource) {
+            yield vamtiger_bash_1.default(publishScript);
+        }
         const checkoutMaster = yield vamtiger_bash_1.default(`git checkout ${masterBranch}`, bashOptions);
         const mergeFromSource = yield vamtiger_bash_1.default(`git checkout ${sourceBranch} -- .`, bashOptions);
         const build = yield vamtiger_bash_1.default(`${runScript} ${buildScript}`, bashOptions);
@@ -72,8 +77,9 @@ function commit(options) {
             pushSourceUpdate = yield vamtiger_bash_1.default(`git push origin ${sourceBranch}`);
             pushBuildUpdate = yield vamtiger_bash_1.default(`git push -f origin ${masterBranch} --tags`);
         }
-        if (publish)
-            publishUpdate = yield vamtiger_bash_1.default(`npm publish ${otpArg}`);
+        if (publish) {
+            publishUpdate = yield vamtiger_bash_1.default(publishScript);
+        }
         return true;
     });
 }
