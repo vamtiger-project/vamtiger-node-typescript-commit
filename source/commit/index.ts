@@ -53,12 +53,6 @@ export default async function commit(options: Options) {
     if (publishSource) {
         await bash(publishScript, bashOptions);
 
-        console.log({
-            updateSource,
-            sourcePackageVersion
-        });
-        console.log(sourceDistTagsScript);
-
         sourceDistTagsScript && await bash(sourceDistTagsScript, bashOptions);
     }
 
