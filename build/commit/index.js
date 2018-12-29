@@ -13,6 +13,8 @@ const path_1 = require("path");
 const XRegExp = require("xregexp");
 const index_1 = require("../index");
 const Args = require("vamtiger-argv");
+const get_package_data_1 = require("../get-package-data");
+const packageName = get_package_data_1.default('name');
 const regex = {
     noChanges: XRegExp('nothing to commit', 'msi')
 };
@@ -51,8 +53,13 @@ function commit(options) {
         const commitSourceChanges = sourceStatus.match(regex.noChanges) ? false : true;
         const commitSource = yield vamtiger_bash_1.default(`git commit -m "${message}"`, bashOptions);
         const updateSource = yield vamtiger_bash_1.default(`npm version ${publishSource && index_1.UpdateVersion.patch || index_1.UpdateVersion.prepatch}`, bashOptions);
+        const sourcePackageVersion = get_package_data_1.default('version');
+        const sourceDistTagsScript = `npm dist-tags add ${packageName}@${sourcePackageVersion} source ${otpArg}`;
         if (publishSource) {
-            yield vamtiger_bash_1.default(publishScript);
+            yield Promise.all([
+                vamtiger_bash_1.default(publishScript, bashOptions),
+                vamtiger_bash_1.default(sourceDistTagsScript, bashOptions)
+            ]);
         }
         const checkoutMaster = yield vamtiger_bash_1.default(`git checkout ${masterBranch}`, bashOptions);
         const mergeFromSource = yield vamtiger_bash_1.default(`git checkout ${sourceBranch} -- .`, bashOptions);
