@@ -59,6 +59,10 @@ function commit(options) {
             yield vamtiger_bash_1.default(publishScript, bashOptions);
             sourcePackageVersion = get_package_data_1.default('version') || '';
             sourceDistTagsScript = sourcePackageVersion && `npm dist-tags add ${packageName}@${sourcePackageVersion} source ${otpArg}` || '';
+            console.log({
+                updateSource,
+                sourcePackageVersion
+            });
             console.log(sourceDistTagsScript);
             sourceDistTagsScript && (yield vamtiger_bash_1.default(sourceDistTagsScript, bashOptions));
         }
