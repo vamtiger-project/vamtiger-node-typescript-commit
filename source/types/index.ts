@@ -49,7 +49,9 @@ export enum CommandlineArgument {
     runscript = 'runscript',
     r = 'r',
     sourceFolder = 'sourceFolder',
-    s = 's'
+    s = 's',
+    publishSource = 'publishSource',
+    P = 'P'
 }
 
 export enum CommandlineArgumentShort {

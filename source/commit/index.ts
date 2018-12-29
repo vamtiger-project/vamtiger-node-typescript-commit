@@ -14,6 +14,8 @@ const commitMessagePrefix = 'vamtiger-node-typescript-commit';
 const argCommitMessageSuffix = args.get(CommandlineArgument.commitMessage) || args.get(CommandlineArgument.c) || '';
 const otp = args.get(CommandlineArgument.otp) || args.get(CommandlineArgument.o)  || '';
 const otpArg = otp ? `--otp=${otp}` : '';
+const publishScript = `npm publish ${otpArg}`;
+const publishSource = args.get(CommandlineArgument.publishSource) || args.get(CommandlineArgument.P)  || '';
 const buildScriptArg = args.get(CommandlineArgument.buildScript) || args.get(CommandlineArgument.b)  || '';
 
 let commitMessage = argCommitMessageSuffix ? `${commitMessagePrefix}: ${argCommitMessageSuffix}` : commitMessagePrefix;
@@ -43,6 +45,9 @@ export default async function commit(options: Options) {
     const commitSourceChanges = sourceStatus.match(regex.noChanges) ? false : true;
     const commitSource = await bash(`git commit -m "${message}"`, bashOptions);
     const updateSource = await bash(`npm version ${UpdateVersion.prepatch}`, bashOptions);
+
+    if (publishSource) {await bash(publishScript)}
+
     const checkoutMaster = await bash(`git checkout ${masterBranch}`, bashOptions);
     const mergeFromSource = await bash(`git checkout ${sourceBranch} -- .`, bashOptions);
     const build = await bash(`${runScript} ${buildScript}`, bashOptions);
@@ -69,8 +74,9 @@ export default async function commit(options: Options) {
         pushBuildUpdate = await bash(`git push -f origin ${masterBranch} --tags`);
     }
 
-    if (publish)
-        publishUpdate = await bash(`npm publish ${otpArg}`);
+    if (publish) {
+        publishUpdate = await bash(publishScript)
+    }
 
     return true;
 }
