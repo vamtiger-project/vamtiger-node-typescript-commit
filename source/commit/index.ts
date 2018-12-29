@@ -22,7 +22,7 @@ let commitMessage = argCommitMessageSuffix ? `${commitMessagePrefix}: ${argCommi
 
 export default async function commit(options: Options) {
     const test = options.test;
-    const updateVersion = options.updateVersion ? options.updateVersion : UpdateVersion.patch;
+    const updateVersion = options.updateVersion ? options.updateVersion : publishSource && UpdateVersion.minor || UpdateVersion.patch;
     const repositoryPath = options.repositoryPath ? options.repositoryPath as string : process.argv[1];
     const sourceBranch = options.sourceBranch ? options.sourceBranch : 'source';
     const masterBranch = options.masterBranch ? options.masterBranch : 'master';
@@ -44,7 +44,7 @@ export default async function commit(options: Options) {
     const sourceStatus = await bash('git status', bashOptions);
     const commitSourceChanges = sourceStatus.match(regex.noChanges) ? false : true;
     const commitSource = await bash(`git commit -m "${message}"`, bashOptions);
-    const updateSource = await bash(`npm version ${UpdateVersion.prepatch}`, bashOptions);
+    const updateSource = await bash(`npm version ${publishSource && UpdateVersion.patch|| UpdateVersion.prepatch}`, bashOptions);
 
     if (publishSource) {await bash(publishScript)}
 
