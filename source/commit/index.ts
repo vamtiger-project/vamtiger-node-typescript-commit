@@ -15,7 +15,7 @@ const argCommitMessageSuffix = args.get(CommandlineArgument.commitMessage) || ar
 const otp = args.get(CommandlineArgument.otp) || args.get(CommandlineArgument.o)  || '';
 const otpArg = otp ? `--otp=${otp}` : '';
 const publishScript = `npm publish ${otpArg}`;
-const publishSource = args.get(CommandlineArgument.publishSource) || args.get(CommandlineArgument.P)  || '';
+const publishSource = args.has(CommandlineArgument.publishSource) || args.has(CommandlineArgument.P);
 const buildScriptArg = args.get(CommandlineArgument.buildScript) || args.get(CommandlineArgument.b)  || '';
 
 let commitMessage = argCommitMessageSuffix ? `${commitMessagePrefix}: ${argCommitMessageSuffix}` : commitMessagePrefix;
