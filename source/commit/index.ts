@@ -47,15 +47,11 @@ export default async function commit(options: Options) {
     const commitSourceChanges = sourceStatus.match(regex.noChanges) ? false : true;
     const commitSource = await bash(`git commit -m "${message}"`, bashOptions);
     const updateSource = await bash(`npm version ${publishSource && UpdateVersion.minor|| UpdateVersion.prepatch}`, bashOptions);
-
-    let sourcePackageVersion: string;
-    let sourceDistTagsScript: string;
+    const sourcePackageVersion = await getPackageData('version') || '';
+    const sourceDistTagsScript = sourcePackageVersion && `npm dist-tags add ${packageName}@${sourcePackageVersion} source ${otpArg}` || '';
     
     if (publishSource) {
         await bash(publishScript, bashOptions);
-
-        sourcePackageVersion = await getPackageData('version') || '';
-        sourceDistTagsScript = sourcePackageVersion && `npm dist-tags add ${packageName}@${sourcePackageVersion} source ${otpArg}` || '';
 
         console.log({
             updateSource,
