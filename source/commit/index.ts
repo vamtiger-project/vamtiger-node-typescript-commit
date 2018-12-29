@@ -5,7 +5,9 @@ import { resolve as resolvePath, basename} from 'path';
 import * as XRegExp from 'xregexp';
 import { Options, UpdateVersion, Folder, RunScript, BuildScript, CommandlineArgument } from '../index';
 import Args = require('vamtiger-argv');
+import getPackageData from '../get-package-data';
 
+const packageName = getPackageData('name');
 const regex = {
     noChanges: XRegExp('nothing to commit', 'msi')
 };
@@ -45,8 +47,15 @@ export default async function commit(options: Options) {
     const commitSourceChanges = sourceStatus.match(regex.noChanges) ? false : true;
     const commitSource = await bash(`git commit -m "${message}"`, bashOptions);
     const updateSource = await bash(`npm version ${publishSource && UpdateVersion.patch|| UpdateVersion.prepatch}`, bashOptions);
-
-    if (publishSource) {await bash(publishScript)}
+    const sourcePackageVersion = getPackageData('version');
+    const sourceDistTagsScript = `npm dist-tags add ${packageName}@${sourcePackageVersion} source ${otpArg}`;
+    
+    if (publishSource) {
+        await Promise.all([
+            bash(publishScript, bashOptions),
+            bash(sourceDistTagsScript, bashOptions)
+        ]);
+    }
 
     const checkoutMaster = await bash(`git checkout ${masterBranch}`, bashOptions);
     const mergeFromSource = await bash(`git checkout ${sourceBranch} -- .`, bashOptions);
