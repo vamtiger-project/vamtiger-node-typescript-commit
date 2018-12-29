@@ -1,8 +1,9 @@
 import { resolve as resolvePath } from 'path';
 
+const { cwd } = process;
 const packageJsonPath = resolvePath(
-    __dirname,
-    '../package'
+    cwd(),
+    'package'
 );
 
 export default function (field: Field) {

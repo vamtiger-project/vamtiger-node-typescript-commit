@@ -57,6 +57,10 @@ export default async function commit(options: Options) {
         sourcePackageVersion = getPackageData('version') || '';
         sourceDistTagsScript = sourcePackageVersion && `npm dist-tags add ${packageName}@${sourcePackageVersion} source ${otpArg}` || '';
 
+        console.log({
+            updateSource,
+            sourcePackageVersion
+        });
         console.log(sourceDistTagsScript);
 
         sourceDistTagsScript && await bash(sourceDistTagsScript, bashOptions);
