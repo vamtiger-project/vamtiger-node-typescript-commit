@@ -56,10 +56,8 @@ function commit(options) {
         const sourcePackageVersion = get_package_data_1.default('version');
         const sourceDistTagsScript = `npm dist-tags add ${packageName}@${sourcePackageVersion} source ${otpArg}`;
         if (publishSource) {
-            yield Promise.all([
-                vamtiger_bash_1.default(publishScript, bashOptions),
-                vamtiger_bash_1.default(sourceDistTagsScript, bashOptions)
-            ]);
+            yield vamtiger_bash_1.default(publishScript, bashOptions);
+            yield vamtiger_bash_1.default(sourceDistTagsScript, bashOptions);
         }
         const checkoutMaster = yield vamtiger_bash_1.default(`git checkout ${masterBranch}`, bashOptions);
         const mergeFromSource = yield vamtiger_bash_1.default(`git checkout ${sourceBranch} -- .`, bashOptions);
