@@ -15,7 +15,7 @@
     "test": "mocha build/test --recursive",
     "build": "rm -rf build/*; tsc",
     "watch": "tsc --watch",
-    "commit": "node build/bin --push --publish --publishSource"
+    "commit": "npm run build && node build/bin --push --publish --publishSource"
   },
   "dependencies": {
     "bluebird": "^3.5.1",
