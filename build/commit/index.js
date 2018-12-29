@@ -53,12 +53,10 @@ function commit(options) {
         const commitSourceChanges = sourceStatus.match(regex.noChanges) ? false : true;
         const commitSource = yield vamtiger_bash_1.default(`git commit -m "${message}"`, bashOptions);
         const updateSource = yield vamtiger_bash_1.default(`npm version ${publishSource && index_1.UpdateVersion.minor || index_1.UpdateVersion.prepatch}`, bashOptions);
-        let sourcePackageVersion;
-        let sourceDistTagsScript;
+        const sourcePackageVersion = (yield get_package_data_1.default('version')) || '';
+        const sourceDistTagsScript = sourcePackageVersion && `npm dist-tags add ${packageName}@${sourcePackageVersion} source ${otpArg}` || '';
         if (publishSource) {
             yield vamtiger_bash_1.default(publishScript, bashOptions);
-            sourcePackageVersion = (yield get_package_data_1.default('version')) || '';
-            sourceDistTagsScript = sourcePackageVersion && `npm dist-tags add ${packageName}@${sourcePackageVersion} source ${otpArg}` || '';
             console.log({
                 updateSource,
                 sourcePackageVersion
