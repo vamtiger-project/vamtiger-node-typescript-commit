@@ -14,7 +14,6 @@ const XRegExp = require("xregexp");
 const index_1 = require("../index");
 const Args = require("vamtiger-argv");
 const get_package_data_1 = require("../get-package-data");
-const packageName = get_package_data_1.default('name');
 const regex = {
     noChanges: XRegExp('nothing to commit', 'msi')
 };
@@ -29,6 +28,7 @@ const buildScriptArg = args.get(index_1.CommandlineArgument.buildScript) || args
 let commitMessage = argCommitMessageSuffix ? `${commitMessagePrefix}: ${argCommitMessageSuffix}` : commitMessagePrefix;
 function commit(options) {
     return __awaiter(this, void 0, void 0, function* () {
+        const packageName = yield get_package_data_1.default('name');
         const test = options.test;
         const updateVersion = options.updateVersion ? options.updateVersion : index_1.UpdateVersion.patch;
         const repositoryPath = options.repositoryPath ? options.repositoryPath : process.argv[1];
@@ -57,7 +57,7 @@ function commit(options) {
         let sourceDistTagsScript;
         if (publishSource) {
             yield vamtiger_bash_1.default(publishScript, bashOptions);
-            sourcePackageVersion = get_package_data_1.default('version') || '';
+            sourcePackageVersion = (yield get_package_data_1.default('version')) || '';
             sourceDistTagsScript = sourcePackageVersion && `npm dist-tags add ${packageName}@${sourcePackageVersion} source ${otpArg}` || '';
             console.log({
                 updateSource,
