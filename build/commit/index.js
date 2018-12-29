@@ -28,7 +28,7 @@ let commitMessage = argCommitMessageSuffix ? `${commitMessagePrefix}: ${argCommi
 function commit(options) {
     return __awaiter(this, void 0, void 0, function* () {
         const test = options.test;
-        const updateVersion = options.updateVersion ? options.updateVersion : index_1.UpdateVersion.patch;
+        const updateVersion = options.updateVersion ? options.updateVersion : publishSource && index_1.UpdateVersion.minor || index_1.UpdateVersion.patch;
         const repositoryPath = options.repositoryPath ? options.repositoryPath : process.argv[1];
         const sourceBranch = options.sourceBranch ? options.sourceBranch : 'source';
         const masterBranch = options.masterBranch ? options.masterBranch : 'master';
@@ -50,7 +50,7 @@ function commit(options) {
         const sourceStatus = yield vamtiger_bash_1.default('git status', bashOptions);
         const commitSourceChanges = sourceStatus.match(regex.noChanges) ? false : true;
         const commitSource = yield vamtiger_bash_1.default(`git commit -m "${message}"`, bashOptions);
-        const updateSource = yield vamtiger_bash_1.default(`npm version ${index_1.UpdateVersion.prepatch}`, bashOptions);
+        const updateSource = yield vamtiger_bash_1.default(`npm version ${publishSource && index_1.UpdateVersion.patch || index_1.UpdateVersion.prepatch}`, bashOptions);
         if (publishSource) {
             yield vamtiger_bash_1.default(publishScript);
         }
