@@ -22,7 +22,7 @@ const argCommitMessageSuffix = args.get(index_1.CommandlineArgument.commitMessag
 const otp = args.get(index_1.CommandlineArgument.otp) || args.get(index_1.CommandlineArgument.o) || '';
 const otpArg = otp ? `--otp=${otp}` : '';
 const publishScript = `npm publish ${otpArg}`;
-const publishSource = args.get(index_1.CommandlineArgument.publishSource) || args.get(index_1.CommandlineArgument.P) || '';
+const publishSource = args.has(index_1.CommandlineArgument.publishSource) || args.has(index_1.CommandlineArgument.P);
 const buildScriptArg = args.get(index_1.CommandlineArgument.buildScript) || args.get(index_1.CommandlineArgument.b) || '';
 let commitMessage = argCommitMessageSuffix ? `${commitMessagePrefix}: ${argCommitMessageSuffix}` : commitMessagePrefix;
 function commit(options) {
