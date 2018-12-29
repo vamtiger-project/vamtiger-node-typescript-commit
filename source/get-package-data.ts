@@ -1,13 +1,16 @@
 import { resolve as resolvePath } from 'path';
+import getFileText from 'vamtiger-get-file-text';
 
 const { cwd } = process;
+const { parse } = JSON;
 const packageJsonPath = resolvePath(
     cwd(),
-    'package'
+    'package.json'
 );
 
-export default function (field: Field) {
-    const packageJson = require(packageJsonPath);
+export default async function (field: Field) {
+    const packageJsonText = await getFileText(packageJsonPath);
+    const packageJson = parse(packageJsonText);
 
     if (field === 'version') {
         return packageJson.version as string;

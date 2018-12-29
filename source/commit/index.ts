@@ -7,7 +7,6 @@ import { Options, UpdateVersion, Folder, RunScript, BuildScript, CommandlineArgu
 import Args = require('vamtiger-argv');
 import getPackageData from '../get-package-data';
 
-const packageName = getPackageData('name');
 const regex = {
     noChanges: XRegExp('nothing to commit', 'msi')
 };
@@ -23,6 +22,7 @@ const buildScriptArg = args.get(CommandlineArgument.buildScript) || args.get(Com
 let commitMessage = argCommitMessageSuffix ? `${commitMessagePrefix}: ${argCommitMessageSuffix}` : commitMessagePrefix;
 
 export default async function commit(options: Options) {
+    const packageName = await getPackageData('name');
     const test = options.test;
     const updateVersion = options.updateVersion ? options.updateVersion : UpdateVersion.patch;
     const repositoryPath = options.repositoryPath ? options.repositoryPath as string : process.argv[1];
@@ -54,7 +54,7 @@ export default async function commit(options: Options) {
     if (publishSource) {
         await bash(publishScript, bashOptions);
 
-        sourcePackageVersion = getPackageData('version') || '';
+        sourcePackageVersion = await getPackageData('version') || '';
         sourceDistTagsScript = sourcePackageVersion && `npm dist-tags add ${packageName}@${sourcePackageVersion} source ${otpArg}` || '';
 
         console.log({
