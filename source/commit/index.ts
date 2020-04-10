@@ -52,6 +52,9 @@ export default async function commit(options: Options) {
         args.has('keepTsConfig') ? '' : resolvePath(repositoryPath, 'tsconfig-declaration.json'),
         args.has('keepTsConfig') ? '' : resolvePath(repositoryPath, 'tsconfig-bin.json'),
         resolvePath(repositoryPath, '.vscode'),
+        resolvePath(repositoryPath, 'cucumber.js'),
+        resolvePath(repositoryPath, '.python-version'),
+        resolvePath(repositoryPath, 'LICENSE'),
         sourceFolder
     ].join(' ')
     const removeRedundantSource = await bash(`rm -rfv ${redundantSource}`, bashOptions);
