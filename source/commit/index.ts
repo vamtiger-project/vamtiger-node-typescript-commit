@@ -5,6 +5,7 @@ import { resolve as resolvePath, basename} from 'path';
 import * as XRegExp from 'xregexp';
 import { Options, UpdateVersion, Folder, RunScript, BuildScript, CommandlineArgument } from '../index';
 import Args = require('vamtiger-argv');
+import getPackageData from '../get-package-data';
 
 const regex = {
     noChanges: XRegExp('nothing to commit', 'msi')
@@ -14,11 +15,14 @@ const commitMessagePrefix = 'vamtiger-node-typescript-commit';
 const argCommitMessageSuffix = args.get(CommandlineArgument.commitMessage) || args.get(CommandlineArgument.c) || '';
 const otp = args.get(CommandlineArgument.otp) || args.get(CommandlineArgument.o)  || '';
 const otpArg = otp ? `--otp=${otp}` : '';
+const publishScript = `npm publish ${otpArg}`;
+const publishSource = args.has(CommandlineArgument.publishSource) || args.has(CommandlineArgument.P);
 const buildScriptArg = args.get(CommandlineArgument.buildScript) || args.get(CommandlineArgument.b)  || '';
 
 let commitMessage = argCommitMessageSuffix ? `${commitMessagePrefix}: ${argCommitMessageSuffix}` : commitMessagePrefix;
 
 export default async function commit(options: Options) {
+    const packageName = await getPackageData('name');
     const test = options.test;
     const updateVersion = options.updateVersion ? options.updateVersion : UpdateVersion.patch;
     const repositoryPath = options.repositoryPath ? options.repositoryPath as string : process.argv[1];
@@ -42,7 +46,16 @@ export default async function commit(options: Options) {
     const sourceStatus = await bash('git status', bashOptions);
     const commitSourceChanges = sourceStatus.match(regex.noChanges) ? false : true;
     const commitSource = await bash(`git commit -m "${message}"`, bashOptions);
-    const updateSource = await bash(`npm version ${UpdateVersion.prepatch}`, bashOptions);
+    const updateSource = await bash(`npm version ` + (publishSource && UpdateVersion.minor|| UpdateVersion.prepatch), bashOptions);
+    const sourcePackageVersion = await getPackageData('version') || '';
+    const sourceDistTagsScript = sourcePackageVersion && `npm dist-tags add ${packageName}@${sourcePackageVersion} source ${otpArg}` || '';
+    
+    if (publishSource) {
+        await bash(publishScript, bashOptions);
+
+        sourceDistTagsScript && await bash(sourceDistTagsScript, bashOptions);
+    }
+
     const checkoutMaster = await bash(`git checkout ${masterBranch}`, bashOptions);
     const mergeFromSource = await bash(`git checkout ${sourceBranch} -- .`, bashOptions);
     const build = await bash(`${runScript} ${buildScript}`, bashOptions);
@@ -72,8 +85,9 @@ export default async function commit(options: Options) {
         pushBuildUpdate = await bash(`git push -f origin ${masterBranch} --tags`);
     }
 
-    if (publish)
-        publishUpdate = await bash(`npm publish ${otpArg}`);
+    if (publish) {
+        publishUpdate = await bash(publishScript)
+    }
 
     return true;
 }
