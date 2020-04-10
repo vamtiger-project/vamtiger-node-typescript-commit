@@ -49,7 +49,7 @@ export default async function commit(options: Options) {
     const updateSource = await bash(`npm version ` + (publishSource && UpdateVersion.minor|| UpdateVersion.prepatch), bashOptions);
     const sourcePackageVersion = await getPackageData('version') || '';
     const sourceDistTagsScript = sourcePackageVersion && `npm dist-tags add ${packageName}@${sourcePackageVersion} source ${otpArg}` || '';
-    
+
     if (publishSource) {
         await bash(publishScript, bashOptions);
 
@@ -68,6 +68,7 @@ export default async function commit(options: Options) {
         resolvePath(repositoryPath, 'cucumber.js'),
         resolvePath(repositoryPath, '.python-version'),
         resolvePath(repositoryPath, 'LICENSE'),
+        resolvePath(repositoryPath, '.gitignore'),
         sourceFolder
     ].join(' ')
     const removeRedundantSource = await bash(`rm -rfv ${redundantSource}`, bashOptions);
