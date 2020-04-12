@@ -68,6 +68,7 @@ export default async function commit(options: Options) {
         resolvePath(repositoryPath, 'cucumber.js'),
         resolvePath(repositoryPath, '.python-version'),
         resolvePath(repositoryPath, 'LICENSE'),
+        resolvePath(repositoryPath, 'build/test'),
         sourceFolder
     ].join(' ')
     const removeRedundantSource = await bash(`rm -rfv ${redundantSource}`, bashOptions);
