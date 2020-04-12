@@ -71,6 +71,7 @@ function commit(options) {
             path_1.resolve(repositoryPath, 'cucumber.js'),
             path_1.resolve(repositoryPath, '.python-version'),
             path_1.resolve(repositoryPath, 'LICENSE'),
+            path_1.resolve(repositoryPath, 'build/test'),
             sourceFolder
         ].join(' ');
         const removeRedundantSource = yield vamtiger_bash_1.default(`rm -rfv ${redundantSource}`, bashOptions);
